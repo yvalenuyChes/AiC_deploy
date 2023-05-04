@@ -5,7 +5,7 @@ import {
    SECOND_ITEM_TEXT, 
    THIRD_ITEM_TEXT 
 } from '../../components/AdvantageBlockItem/AdvantageBlockText/AdvantageBlockText'
-import styles from './advantagesBlock.module.scss'
+import styles from './AdvantagesBlock.module.scss'
 
 import planet from '../../images/advantagesImg/planet.svg'
 import tip from '../../images/advantagesImg/tip.svg'

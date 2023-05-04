@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './NavBar.module.scss'
-import NavBodyWrapper from './NavBarComponents/navBodyWrapper'
+import NavBodyWrapper from './NavBarComponents/NavBodyWrapper'
 
 
 export default function Nav() {

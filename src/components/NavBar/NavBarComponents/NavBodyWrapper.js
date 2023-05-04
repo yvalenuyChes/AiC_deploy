@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import NavBody from './navBody'
+import NavBody from './NavBody'
 import {toggleNavOpen} from '../../../redux/slices/openNav'
 import styles from './NavBarComponents.module.scss'
 
