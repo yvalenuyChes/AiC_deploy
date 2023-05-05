@@ -42,7 +42,7 @@ export const LoginTab = () => {
 
 		 const configuration = {
 			method: "post",
-			url: "http://localhost:3000/login",
+			url: "https://aic-api.onrender.com/login",
 			data: {
 			   email:email.toLowerCase().trim(),
 				password: password.trim(),

@@ -41,7 +41,7 @@ const RegistrationTab = () => {
       event.preventDefault()
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/signup',
+         url:'https://aic-api.onrender.com/signup',
          data:{
             name: values.name.trim(),
             email:values.email.trim(),
