@@ -3,7 +3,6 @@ import { wrapper } from '@/redux/store'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import "animate.css"
 config.autoAddCss = false
 
 import '../styles/_styles.scss'

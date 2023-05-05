@@ -19,7 +19,7 @@ export default function ResetPassword(){
 
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/send_reset_password_code',
+         url:'https://aic-api.onrender.com/send_reset_password_code',
          data:{
             email
          }
@@ -39,7 +39,7 @@ export default function ResetPassword(){
       event.preventDefault()
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/verify-reset-password-code',
+         url:'https://aic-api.onrender.com/verify-reset-password-code',
          data:{
             email,
             send_code:code
@@ -61,7 +61,7 @@ export default function ResetPassword(){
 
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/change-password',
+         url:'https://aic-api.onrender.com/change-password',
          data:{
             email,
             newPassword

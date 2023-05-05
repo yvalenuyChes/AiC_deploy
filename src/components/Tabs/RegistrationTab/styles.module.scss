@@ -29,14 +29,13 @@
 
 
 	&__item{
+		text-align: left;
 		height: 40px;
 		transition: all .3s ease;
 		padding: 10px 0 10px 0;
 		color: rgb(124, 210, 124);
 		font-size: 16px;
 		font-weight: 600;
-		display: flex;
-		align-items: space-between;
 
 		&_tip{
 			position: relative;
@@ -135,12 +134,12 @@
 
 .signin_label__link{
 			transition: .5s ease;
-			color: #000;
+			color: #000 !important;
 }
 			
 .signin_label__link{
 	transition: .5s ease;
-	color: cornflowerblue;
+	color: cornflowerblue !important;
 }
 
 .tab_button{

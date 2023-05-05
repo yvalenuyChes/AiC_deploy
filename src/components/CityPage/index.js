@@ -14,7 +14,7 @@ import Loader from '@/components/Loader/Loader'
 import { setColor, setMessage, removeColor, removeMessage } from '@/redux/slices/AppMessage'
 import { Modal } from '@mui/material'
 import  AddBankCardForm  from '@/pages/profile/components/AddBankCardForm/AddBankCardForm'
-
+import Cookies from 'universal-cookie'
 
 export default function CityPage({
    cityName,
@@ -51,7 +51,18 @@ export default function CityPage({
    const pageWidth = useWindowWidth()
 
    useEffect(()=>{
-         axios.get('http://localhost:3000/user').then(result => {
+
+      const cookies = new Cookies()
+      
+      const configuration = {
+         method:'GET',
+         url:'https://aic-api.onrender.com/user',
+         headers: {
+            Authorization: cookies.get('TOKEN')
+         }
+      }
+      axios(configuration)
+      .then(result => {
             setUserEmail(result.data.email)
             if(window !== undefined){
                setCreditCard(localStorage.getItem('AiW_Credit_Card'))
@@ -114,7 +125,7 @@ export default function CityPage({
 
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/order_ticket',
+         url:'https://aic-api.onrender.com/order_ticket',
          data:{
             email: userEmail,
             name:`${cityName}`,

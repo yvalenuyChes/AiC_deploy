@@ -28,7 +28,7 @@ export default function SmallBankCard ({
       setLoading(true)
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/delete_card',
+         url:'https://aic-api.onrender.com/delete_card',
          data:{
             email: userEmail,
             cardNumber: cardNumber.toString()

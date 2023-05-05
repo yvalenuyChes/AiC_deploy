@@ -4,14 +4,23 @@ import axios from "axios"
 import  Ticket  from "../profile/components/Ticket/Ticket"
 import MainPage from "@/layout/MainPage"
 import styles from './styles.module.scss'
-
+import Cookies from 'universal-cookie'
 
 export default function UsedTickets(){
 
    const [userData, setUserData] = useState(null)
 
    useEffect(()=>{
-      axios.get('http://localhost:3000/user')
+      const cookies = new Cookies()
+
+      const configuration = {
+         method:'GET',
+         url:'https://aic-api.onrender.com/user',
+         headers: {
+            Authorization: cookies.get('TOKEN')
+         }
+      }
+      axios(configuration)
       .then(result => setUserData(result.data) )
       .catch(e => console.log(e))
 }, [])

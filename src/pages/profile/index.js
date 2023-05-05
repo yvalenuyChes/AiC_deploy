@@ -9,7 +9,7 @@ import  SmallBankCard  from './components/SmallBankCard/SmallBankCard'
 import Loader from '@/components/Loader/Loader'
 import styles from './styles.module.scss'
 import Link from 'next/link'
-
+import Cookies from 'universal-cookie'
 
 //!!!!!!!!!!!!!!!!!!!!! Поставь фон для карточек, чтобы при медленной загрузке было понятно, что за карточка
 
@@ -21,7 +21,19 @@ export default function Profile(){
    const [reloadCards, setReloadCards] = useState('')
 
    useEffect(()=>{
-         axios.get('http://localhost:3000/user')
+
+      const cookies = new Cookies()
+
+      
+
+      const configuration = {
+         method:'GET',
+         url:'https://aic-api.onrender.com/user',
+         headers: {
+            Authorization: cookies.get('TOKEN')
+         }
+      }
+         axios(configuration)
          .then(result => setUser(result.data) )
          .catch(e => console.log(e))
    }, [addBankCard, reloadCards])
@@ -30,7 +42,7 @@ export default function Profile(){
 
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/send_virified_letter',
+         url:'https://aic-api.onrender.com/send_virified_letter',
          data:{
             email:user.email
          }

@@ -7,6 +7,7 @@ import { X_RAPID_API_HOST, X_RAPID_API_KEY } from "@/keys"
 import { useDispatch } from "react-redux"
 import { setColor, setMessage, removeColor, removeMessage } from "@/redux/slices/AppMessage"
 import Loader from "@/components/Loader/Loader"
+import Cookies from 'universal-cookie'
 
 export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCard}) {
 
@@ -14,11 +15,22 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
  //!!!!!!!!!!!!!!!!!!! СТРАННЫЙ БАГ, ПРИ ПЕРЕХОДЕ ИЗ ФОРМЫ ЗАКАЗА БИЛЕТА КАРТА НЕ ПОДГРУЖАЕТСЯ ПРИ ЗАПОЛНЕНИИ 
 
    useEffect(()=> {
+
+      const cookies = new Cookies()
+
+
       if(userEmail){
          setEmail(userEmail)
       }else{
-         axios.get('http://localhost:3000/user')
-         .then(result => setEmail(result.data.email) )
+         const configuration = {
+            method:'GET',
+            url:'https://aic-api.onrender.com/user',
+            headers: {
+               Authorization: cookies.get('TOKEN')
+            }
+         }
+         axios(configuration)
+         .then(result => setUser(result.data) )
          .catch(e => console.log(e))
       }
    }, [])
@@ -105,7 +117,7 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
       
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/add_card',
+         url:'https://aic-api.onrender.com/add_card',
          data:{
             email,
             cardNumber:cardNumber.trim(),
