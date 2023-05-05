@@ -14,6 +14,21 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
 
  //!!!!!!!!!!!!!!!!!!! СТРАННЫЙ БАГ, ПРИ ПЕРЕХОДЕ ИЗ ФОРМЫ ЗАКАЗА БИЛЕТА КАРТА НЕ ПОДГРУЖАЕТСЯ ПРИ ЗАПОЛНЕНИИ 
 
+
+
+
+   const [cardData, setCardData] = useState(null)
+   const [email, setEmail] = useState(null)
+
+   const [holderName, setHolderName] = useState('')
+   const [cardNumber, setCardNumber] = useState('')
+   const [expireDate] = useState('21/30')
+   const [loading, setLoading] = useState(false)
+   const [cardError, setCardError] = useState(true)
+   
+
+   const dispatch = useDispatch()
+
    useEffect(()=> {
 
       const cookies = new Cookies()
@@ -30,23 +45,10 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
             }
          }
          axios(configuration)
-         .then(result => setUser(result.data) )
+         .then(result => setEmail(result.data.email) )
          .catch(e => console.log(e))
       }
    }, [])
-
-
-   const [cardData, setCardData] = useState(null)
-   const [email, setEmail] = useState(null)
-
-   const [holderName, setHolderName] = useState('')
-   const [cardNumber, setCardNumber] = useState('')
-   const [expireDate] = useState('21/30')
-   const [loading, setLoading] = useState(false)
-   const [cardError, setCardError] = useState(true)
-   
-
-   const dispatch = useDispatch()
    
    useEffect(() => {
       if(cardNumber.length === 15){
