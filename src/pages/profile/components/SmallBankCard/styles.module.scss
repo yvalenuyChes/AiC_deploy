@@ -1,8 +1,15 @@
+.wrapper{
+   padding: 20px;
+}
+
+
 .smallBankCard{
+   cursor: pointer;
    width: 150px;
    height: 80px;
    border-radius: 10px;
    position: relative;
+   perspective:1000px;
 
    &_brand{
       position: absolute;
@@ -38,7 +45,6 @@
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
-      opacity: 0;
      
    }
 
@@ -61,16 +67,46 @@
       }
    }
 
-   &:hover{
+   // &:hover{
 
-      .smallBankCard_buttons{
-         opacity: 1;
-         transition: all .3s ease;
-      }
-   }
+   //    .smallBankCard_buttons{
+   //       opacity: 1;
+   //       transition: all .3s ease;
+   //    }
+   // }
 
    
 
+}
+
+.front,
+.back{
+	padding: 0 20px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left:0;
+	top: 0;
+	transition: all 1s ease;
+	backface-visibility: hidden;
+}
+
+.back{
+	color: #fff;
+	background-color: #000;
+	transform: rotateY(180deg);
+}
+
+.smallBankCard.active .front{
+	transform: rotateY(180deg);	
+}
+
+.smallBankCard.active .back{
+	transform: rotateY(360deg);
 }
 
 .selectedCard{

@@ -16,7 +16,7 @@ export default function SmallBankCard ({
 
    const number =  cardNumber ? cardNumber.toString() : ''
 
-
+   const [active, setActive] = useState(false)
 
    const dispatch = useDispatch()
    const [loading, setLoading] = useState(false)
@@ -24,7 +24,7 @@ export default function SmallBankCard ({
 
    useEffect(() => {
       setAiC_creditCard(localStorage.getItem('AiW_Credit_Card')) 
-   }, [])
+   }, [active])
 
    const removeCardHandler = () => {
       setLoading(true)
@@ -42,7 +42,7 @@ export default function SmallBankCard ({
       .then(result=> {
          dispatch(setMessage(`${result.data.message}`))
          dispatch(setColor(`${result.data.color}`))
-         setReloadCards(new Date())
+         setReloadCards(Date.now())
          if(window !== undefined){
             localStorage.removeItem('AiW_Credit_Card')
          }
@@ -63,42 +63,62 @@ export default function SmallBankCard ({
    const selectDefoultCard = () => {
       if(window !== undefined){
          localStorage.setItem('AiW_Credit_Card', number)
-        setReloadCards(Date.now())
+       
         setAiC_creditCard(localStorage.getItem('AiW_Credit_Card'))
       }
+
+      setReloadCards(prev => prev + Date.now())
    }
 
    return(
       <div
       className={
-         number === AiC_creditCard
-         ?   styles.smallBankCard + ' ' + styles[bank] + ' ' + styles.selectedCard
-         :   styles.smallBankCard + ' ' + styles[bank] 
-         }>
+         number == AiC_creditCard
+         ?    
+         active
+            ?  styles.smallBankCard + ' ' + styles[bank] + ' ' + styles.selectedCard + ' ' + styles.active
+            :  styles.smallBankCard + ' ' + styles[bank] + ' ' + styles.selectedCard
+         :     
+         active
+            ?   styles.smallBankCard + ' ' + styles[bank] + ' ' +  styles.active
+            :   styles.smallBankCard + ' ' + styles[bank]
+       
+         }
+         onClick={() => setActive(prev => !prev)}
+         
+         >
          {
             loading
             ? <div className={styles.smallBankCard__loader} ><Loader/></div>
 
             :
             <>
+            <div className={styles.front} >
                <div className={styles.smallBankCard_number} > **** {number.substring(number.length - 4)} </div>
-               <div
-               className={styles.smallBankCard_brand + ' ' + styles[brand]
-               }
-               />
+                  <div
+                  className={styles.smallBankCard_brand + ' ' + styles[brand]}
+                  />
+            </div>
+             <div className={styles.back} >
                <div className={styles.smallBankCard_buttons} >
-                  <button 
-                  className={styles.smallBankCard__select + ' ' + styles.smallBankCard__button}
-                  onClick={selectDefoultCard}
-                  >Выбрать для оплаты</button>
-                  <button className={styles.smallBankCard__remove + ' ' + styles.smallBankCard__button} 
-                  onClick={removeCardHandler}
-                  >Удалить карту</button>
-               </div>
+                     <button 
+                     disabled={!active}
+                     className={styles.smallBankCard__select + ' ' + styles.smallBankCard__button}
+                     onClick={selectDefoultCard}
+                     >Выбрать для оплаты</button>
+                     <button 
+                      disabled={!active}
+                     className={styles.smallBankCard__remove + ' ' + styles.smallBankCard__button} 
+                     onClick={removeCardHandler}
+                     >Удалить карту</button>
+                  </div>
+             </div>
+              
             </>
             
          }
         
-      </div>
+         </div>
+      
    )
 }

@@ -46,6 +46,10 @@ export default function Saint_petersburg(){
          sixthTitle={'Третье интересное место'}
          sixthText={SIXTH_TEXT_ITEM}
          sixthCardImage={styles.sixthCardItem}
+
+
+         hotelPrice={3000}
+         ticketPrice={7600}
       />
    )
 }

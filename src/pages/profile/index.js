@@ -37,7 +37,6 @@ export default function Profile(){
          .catch(e => console.log(e))
    }, [addBankCard, reloadCards])
 
-   console.log(reloadCards);
 
    // const sendVerifiedLetter = () =>{
 

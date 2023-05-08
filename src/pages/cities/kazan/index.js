@@ -36,6 +36,11 @@ export default function Kazan(){
          sixthTitle={'Третье интересное место'}
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
+
+
+         hotelPrice={5000}
+         ticketPrice={19000}
+
       />
    )
 }

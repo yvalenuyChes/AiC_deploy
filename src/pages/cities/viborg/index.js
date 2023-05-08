@@ -36,6 +36,10 @@ export default function Viborg(){
          sixthTitle={'Третье интересное место'}
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
+
+
+         hotelPrice={4000}
+         ticketPrice={9120}
       />
    )
 }

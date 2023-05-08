@@ -150,7 +150,7 @@ export default function CityPage({
             }, 3000)
             setAccept(false)
             setPersonNum(1)
-            setPrice(5000)
+            setPrice(ticketPrice)
             setDate(currentDate.toJSON().slice(0, 10))
          }
          

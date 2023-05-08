@@ -38,6 +38,9 @@ export default function Sochi(){
          sixthTitle={'Третье интересное место'}
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
+
+         hotelPrice={10000}
+         ticketPrice={38000}
       />
    )
 }

@@ -36,6 +36,10 @@ export default function Moscow(){
          sixthTitle={'Третье интересное место'}
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
+
+
+         hotelPrice={7500}
+         ticketPrice={15200}
       />
    )
 }

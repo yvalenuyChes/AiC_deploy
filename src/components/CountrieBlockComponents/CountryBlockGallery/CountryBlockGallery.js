@@ -19,7 +19,7 @@ export default function CountrieBlockGallery() {
 					imgSrc={MSK}
 					title="Москва"
 					content__text_subtitle={MSK_TEXT}
-					value='700'
+					value='200'
 					link={'/cities/moscow'}
 					orderLink={'cities/moscow#moscow_order_ticket'}
 				/>
@@ -29,7 +29,7 @@ export default function CountrieBlockGallery() {
 					imgSrc={SOCHI}
 					title="Сочи"
 					content__text_subtitle={SOCHI_TEXT}
-					value='300'
+					value='500'
 					link={'/cities/sochi'}
 					orderLink={'/cities/sochi#sochi_order_ticket'}
 				/>
@@ -39,7 +39,7 @@ export default function CountrieBlockGallery() {
 					imgSrc={KAZ}
 					title="Казань"
 					content__text_subtitle={KAZAN_TEXT}
-					value='540'
+					value='250'
 					link={'/cities/kazan'}
 					orderLink={'cities/kazan#kazan_order_ticket'}
 				/>
@@ -60,7 +60,7 @@ export default function CountrieBlockGallery() {
 					imgSrc={BARN}
 					title="Барнаул"
 					content__text_subtitle={BARNAYL_TEXT}
-					value='450'
+					value='350'
 					link={'/cities/barnayl'}
 					orderLink={'cities/barnayl#barnayl_order_ticket'}
 				/>
@@ -70,7 +70,7 @@ export default function CountrieBlockGallery() {
 					imgSrc={VIB}
 					title="Выборг"
 					content__text_subtitle={VIBORG_TEXT}
-					value='465'
+					value='120'
 					link={'/cities/viborg'}
 					orderLink={'/cities/viborg#viborg_order_ticket'}
 				/>

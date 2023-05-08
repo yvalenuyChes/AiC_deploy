@@ -37,7 +37,8 @@ export default function Barnaul(){
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
 
-
+         hotelPrice={3000}
+         ticketPrice={26600}
          addParralax={true}
       />
    )
