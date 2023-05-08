@@ -5,7 +5,7 @@
      &_block{
       margin: 150px auto 0px auto;
       padding: 0px 20px;
-      width: 600px;
+      max-width: 600px;
      } 
 
      &_title{
@@ -14,19 +14,23 @@
       font-weight: 600;
      }
 
+
+
      &_name{
       font-size: 18px;
       padding: 30px 0px;
+      text-align: center;
      
 
       &_title{
          display: block;   
          height: 30px;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         width: 150px;
       }
+     }
+
+     &__email{
+      padding: 40px 0px;
+      font-size: 16px;
      }
 
 
@@ -40,11 +44,20 @@
       }
 
       &__tickets{
+
+         text-align: center;
+
+
          &_title{
             text-align: center;
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 100px;
+            margin-bottom: 50px;
+         }
+
+         &_subtitle{
+            margin: 20px 0px;
+            font-size: 18px;
          }
 
          &_list{
@@ -65,6 +78,34 @@
          &__no_tickets{
             text-align: center;
          }
+
+
+
+         .used_tickets_button{
+            
+
+               height: 48px;
+               position: relative;
+               transition: ease .5s all;
+               margin: 30px auto 10px auto;
+               border: none;
+               width: 250px;
+               background: #298cad;
+               color:white;
+               font-size: 14px;
+               text-transform: uppercase;
+               display: block;
+               text-align: center;
+               line-height: 48px;
+               border-radius: 10px;
+            
+            
+            
+            &:hover{
+            transition: ease .5s all;
+            background: rgb(35, 78, 158);
+            }
+         }
       }
    }
 
@@ -84,9 +125,11 @@
          font-size: 24px;
          text-align: center;  
          font-weight: 600;
+         margin-bottom: 50px;
       }
 
       &_message{
+         padding: 20px;
          display: flex;
          flex-direction: column;
          align-items: center;
@@ -138,4 +181,18 @@
       }
 
      }
+}
+
+
+
+@media (max-width:500px) {
+  .profile__tickets_list{
+   grid-template-columns: 1fr !important; 
+   grid-template-rows: 1fr; 
+  }
+
+  .user_pay_card_saved{
+   grid-template-columns: 1fr 1fr !important;
+   
+  }
 }

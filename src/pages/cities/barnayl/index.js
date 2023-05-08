@@ -36,6 +36,9 @@ export default function Barnaul(){
          sixthTitle={'Третье интересное место'}
          sixthText={'Text'}
          sixthCardImage={styles.sixthCardItem}
+
+
+         addParralax={true}
       />
    )
 }

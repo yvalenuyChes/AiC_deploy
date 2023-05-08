@@ -16,6 +16,8 @@ export default function SmallBankCard ({
 
    const number =  cardNumber ? cardNumber.toString() : ''
 
+
+
    const dispatch = useDispatch()
    const [loading, setLoading] = useState(false)
    const [AiC_creditCard, setAiC_creditCard] = useState(null)
@@ -54,18 +56,22 @@ export default function SmallBankCard ({
       .finally(() => setLoading(false))
    }
 
+   useEffect(()=> {
+      setReloadCards(Date.now())
+   }, [AiC_creditCard])
+
    const selectDefoultCard = () => {
       if(window !== undefined){
          localStorage.setItem('AiW_Credit_Card', number)
+        setReloadCards(Date.now())
+        setAiC_creditCard(localStorage.getItem('AiW_Credit_Card'))
       }
-    
-      setReloadCards(new Date())
    }
 
    return(
       <div
       className={
-         number == AiC_creditCard
+         number === AiC_creditCard
          ?   styles.smallBankCard + ' ' + styles[bank] + ' ' + styles.selectedCard
          :   styles.smallBankCard + ' ' + styles[bank] 
          }>

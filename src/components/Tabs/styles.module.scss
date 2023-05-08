@@ -72,3 +72,10 @@
 .tab_link:hover{
    color: cornflowerblue;
 }
+
+
+@media (max-width:500px) {
+   .tab{
+      font-size: 18px;
+   }
+}

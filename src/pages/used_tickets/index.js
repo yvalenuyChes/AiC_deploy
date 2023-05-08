@@ -5,6 +5,8 @@ import  Ticket  from "../profile/components/Ticket/Ticket"
 import MainPage from "@/layout/MainPage"
 import styles from './styles.module.scss'
 import Cookies from 'universal-cookie'
+import Link from "next/link"
+import Head from "next/head"
 
 export default function UsedTickets(){
 
@@ -30,8 +32,11 @@ export default function UsedTickets(){
 
    return(
       <MainPage>
+         <Head>
+            Использованные билеты
+         </Head>
       <div className={styles.container} >
-         <h2>Использованные билеты</h2>
+         <h2 className={styles.container__title}>Использованные билеты</h2>
          {
             userData
             ?
@@ -62,6 +67,7 @@ export default function UsedTickets(){
                : <div>Нет использованных билетов</div>
             : <Loader/>
          }
+         <Link className={styles.button} href={'/profile'} >Назад</Link>
       </div>
       </MainPage>
       

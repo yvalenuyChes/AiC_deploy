@@ -18,13 +18,12 @@ export default function Profile(){
    const [user,setUser] = useState('')
    const [addBankCard, setAddBankCard] = useState(false)
    const isLogin = useSelector(state => state.isAuth.isAuth)
-   const [reloadCards, setReloadCards] = useState('')
+   const [reloadCards, setReloadCards] = useState(0)
 
    useEffect(()=>{
 
       const cookies = new Cookies()
 
-      
 
       const configuration = {
          method:'GET',
@@ -38,23 +37,25 @@ export default function Profile(){
          .catch(e => console.log(e))
    }, [addBankCard, reloadCards])
 
-   const sendVerifiedLetter = () =>{
+   console.log(reloadCards);
 
-      const configuration = {
-         method:'post',
-         url:'https://aic-api.onrender.com/send_virified_letter',
-         data:{
-            email:user.email
-         }
-      }
+   // const sendVerifiedLetter = () =>{
+
+   //    const configuration = {
+   //       method:'post',
+   //       url:'https://aic-api.onrender.com/send_virified_letter',
+   //       data:{
+   //          email:user.email
+   //       }
+   //    }
 
 
-      axios(configuration)
-      .then(result => {
-         console.log(result)
-      })
-      .catch(e => console.log(e))
-   }
+   //    axios(configuration)
+   //    .then(result => {
+   //       console.log(result)
+   //    })
+   //    .catch(e => console.log(e))
+   // }
 
    return(
       <MainPage>
@@ -68,18 +69,18 @@ export default function Profile(){
             <div className={styles.profile_block}>
              <h3 className={styles.profile_title} >Профиль</h3>
              <div className={styles.profile_name}>
-               <h3 className={styles.profile_name_title} >  Ваше имя: {user === null ?  <Loader/>  : user.name }</h3>
+               <h3 className={styles.profile_name_title} >  Здравствуйте, {user === null ?  <Loader/>  : user.name }</h3>
              </div>
-            <div>
+            {/* <div className={styles.profile__email} >
                <p>Ваша почта: {user === null ? <Loader/> : user.email}  </p>
 
                <button onClick={sendVerifiedLetter} >Подтвердить почту</button>
-            </div>
+            </div> */}
 
            
              <div className={styles.profile__tickets} >
                <h3 className={styles.profile__tickets_title} >Ваши билеты</h3>
-               <h4>Действующие билеты</h4>
+               <h4 className={styles.profile__tickets_subtitle} >Действующие билеты</h4>
                <div>
                   {
                   user.tickets
@@ -116,7 +117,7 @@ export default function Profile(){
                   
                   }
                </div>
-               <Link href={'/used_tickets'}  >Использованные билеты</Link>
+               <Link className={styles.used_tickets_button} href={'/used_tickets'}  >Использованные билеты</Link>
              </div>
              <div className={styles.user_pay_card} >
                <h3 className={styles.user_pay_card__title} >Ваши банковские карты</h3>

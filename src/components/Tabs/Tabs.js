@@ -3,6 +3,8 @@ import RegistrationTab from './RegistrationTab/RegistrationTab'
 import { LoginTab } from './LoginTab/LoginTab'
 
 import styles from './styles.module.scss'
+import useWindowWidth from '@/custumHooks/useWindowWidth'
+import { RegstrationTabMobile } from './RegistrationTab/RegstrationTabMobile/RegstrationTabMobile'
 
 export const Tabs = () => {
    const [firstActivateTab, toggleFirstActivateTab] = useState(true)
@@ -13,6 +15,8 @@ export const Tabs = () => {
       toggleFirstActivateTab(prev =>!firstActivateTab)
       toggleSecondActivateTab(prev => !secondActivateTab)
    }
+
+   const width = useWindowWidth()
 
 
    return (
@@ -42,7 +46,12 @@ export const Tabs = () => {
          {
             firstActivateTab
                ? <LoginTab/>
-               : <RegistrationTab/>
+               : 
+               width > 767
+               ?
+               <RegistrationTab/>
+               : <RegstrationTabMobile/>
+               
          }
       </div>
    )

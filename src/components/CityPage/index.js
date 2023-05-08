@@ -4,7 +4,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import MainPage from "../../layout/MainPage"
 import useWindowWidth from '../../custumHooks/useWindowWidth'
-// import ParralaxKanada from '../../components/CityPageComponents/Parralax/Parralax'
+import ParralaxKanada from '../../components/CityPageComponents/Parralax/Parralax'
 import SlidingSlider from '../../components/CityPageComponents/Sliding slider/SlidingSlider'
 import Card from '../../components/CityPageComponents/Card/Card'
 import Input from '@/components/Input/Input'
@@ -28,6 +28,8 @@ export default function CityPage({
 
    ticketPrice = 10000,
    hotelPrice  = 6000,
+
+   addParralax
 }){
 
    const currentDate =new Date()
@@ -176,7 +178,15 @@ export default function CityPage({
          <title>{cityName}</title>
       </Head>
       <section className={styles.wrapper}>
-         {/* <ParralaxKanada /> */}
+         {
+            addParralax
+            ?  <ParralaxKanada
+               container
+            
+            />
+            : null
+         }
+        
          <div className={styles.content_paralax}>
             <div className={styles.content__body}>
                <div className={styles.content__header} id={`${cityNameEng}_header`}>

@@ -1,6 +1,7 @@
 import  { useState } from 'react'
 import Input from "@/components/Input/Input"
 import Loader from "@/components/Loader/Loader"
+import axios from 'axios'
 import styles from './styles.module.scss'
 
 export const RegstrationTabMobile = () => {
@@ -41,7 +42,7 @@ export const RegstrationTabMobile = () => {
       event.preventDefault()
       const configuration = {
          method:'post',
-         url:'http://localhost:3000/signup',
+         url:'https://aic-api.onrender.com/signup',
          data:{
             name: values.name.trim(),
             email:values.email.trim(),
@@ -113,20 +114,44 @@ export const RegstrationTabMobile = () => {
    return(
          <form
          method='POST'
+         onSubmit={handleSubmit}
          >
-              <div className={styles.inputBox}>
-               <Input
-                  label="Введите e-mail"
-                  name='email'
-                  type="email"
-                  inputMode="email"
-                  value={email}
-                  onBlur={validateEmail(email)}
-                  onChange={handleChange('email')}
-                  required
-               />
+            <div className={styles.form__block} >
+              
+               <div className={styles.inputBox}>
+                  <Input
+                     label="Введите e-mail"
+                     name='email'
+                     type="email"
+                     inputMode="email"
+                     value={email}
+                     onBlur={validateEmail(email)}
+                     onChange={handleChange('email')}
+                     required
+                  />
+               </div>
+               <div>
+               <div className={
+                     `
+                     ${
+                        errors.email
+                        ? styles.errorsField__item + ' ' + styles.errors
+                        : styles.errorsField__item
+                     }
+                     
+                     `
+                     }>Электронная почта
+                     {
+                        errors.email
+                        ? null
+                        : <span className={styles.errorsField__item_tip}/>
+                     }
+                     
+                     </div>
+               </div>
             </div>
-<div className={styles.inputBox}>
+            <div className={styles.form__block} >
+            <div className={styles.inputBox}>
                <Input
                   label="Введите свое имя"
                   type="text"
@@ -135,25 +160,79 @@ export const RegstrationTabMobile = () => {
                   onBlur={validateName(name)}
                />
             </div>
-            <div className={styles.inputBox}>
-               <Input
-                  label="Введите пароль"
-                  type="password"
-                  value={password}
-                  onBlur={validatePassword(password)}
-                  onChange={handleChange('password')}
+            </div>
+                  <div className={`
+                 ${
+                  errors.name
+                  ? styles.errorsField__item + ' ' + styles.errors
+                  : styles.errorsField__item
+                 }
+                 `}>Имя
+                 {
+                        errors.name
+                        ? null
+                        : <span className={styles.errorsField__item_tip}/>
+                  }
+                 </div>
+               <div className={styles.form__block} >
+               <div className={styles.inputBox}>
+                  <Input
+                     label="Введите пароль"
+                     type="password"
+                     value={password}
+                     onBlur={validatePassword(password)}
+                     onChange={handleChange('password')}
 
-               />
-            </div>
+                  />
+                  </div>
+
+                  <div 
+                  className={
+                    errors.password
+                    ? styles.errorsField__item + ' ' + styles.errors
+                    : styles.errorsField__item
+                  }
+
+
+                  >{errors.password ? 'В пароле должно быть минимум 8 символов' : 'Пароль корректен'}
+                   {
+                        errors.password
+                        ? null
+                        : <span className={styles.errorsField__item_tip}/>
+                  }
+                  </div>
+               </div>
+          <div className={styles.form__block} >
             <div className={styles.inputBox}>
-               <Input
-                  label="Повторите свой пароль"
-                  type="password"
-                  value={repeatPassword}
-                  onChange={handleChange('repeatPassword')}
-                  onBlur={validateRepeatPassword(repeatPassword)}
-               />
-            </div>
+                  <Input
+                     label="Повторите свой пароль"
+                     type="password"
+                     value={repeatPassword}
+                     onChange={handleChange('repeatPassword')}
+                     onBlur={validateRepeatPassword(repeatPassword)}
+                  />
+               </div>
+
+               <div className={
+                     `
+                     ${
+                        errors.repeatPassword
+                        ? styles.errorsField__item + ' ' + styles.errors
+                        : styles.errorsField__item 
+                     }
+                     
+                     `
+                     }>
+                        {errors.repeatPassword ? 'Пароли не совпадают' : 'Пароли совпадают' }
+                     {
+                        errors.repeatPassword
+                        ? null
+                        :   <span className={styles.errorsField__item_tip}/>
+                     }
+                     
+                     </div>
+          </div>
+          
             <div className={styles.recover} >
 						<label 
                   onClick={() => setAccept(!accept)} 

@@ -21,6 +21,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={MSK_TEXT}
 					value='700'
 					link={'/cities/moscow'}
+					orderLink={'cities/moscow#moscow_order_ticket'}
 				/>
 			</div>
 			<div className={styles.maldives}>
@@ -30,6 +31,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={SOCHI_TEXT}
 					value='300'
 					link={'/cities/sochi'}
+					orderLink={'/cities/sochi#sochi_order_ticket'}
 				/>
 			</div>
 			<div className={styles.vengria}>
@@ -39,6 +41,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={KAZAN_TEXT}
 					value='540'
 					link={'/cities/kazan'}
+					orderLink={'cities/kazan#kazan_order_ticket'}
 				/>
 			</div>
 			<div className={styles.mram}>
@@ -49,7 +52,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={SPB_TEXT}
 					value='100'
 					link={'/cities/saint_petersburg'}
-					orderLink={'/saint_petersburg#order_ticketSPB'}
+					orderLink={'/cities/saint_petersburg#spb_order_ticket'}
 				/>
 			</div>
 			<div className={styles.newYork}>
@@ -59,6 +62,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={BARNAYL_TEXT}
 					value='450'
 					link={'/cities/barnayl'}
+					orderLink={'cities/barnayl#barnayl_order_ticket'}
 				/>
 			</div>
 			<div className={styles.kanada}>
@@ -68,6 +72,7 @@ export default function CountrieBlockGallery() {
 					content__text_subtitle={VIBORG_TEXT}
 					value='465'
 					link={'/cities/viborg'}
+					orderLink={'/cities/viborg#viborg_order_ticket'}
 				/>
 			</div>
 		</div>

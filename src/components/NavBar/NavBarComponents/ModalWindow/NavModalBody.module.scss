@@ -60,3 +60,12 @@ overflow: auto !important;
       text-align: center;
       font-size: 40px;
    }
+
+
+
+   @media (max-width:500px) {
+      .popup__title{
+         font-size: 25px;
+         padding: 10px 0 0 0;
+      }
+   }

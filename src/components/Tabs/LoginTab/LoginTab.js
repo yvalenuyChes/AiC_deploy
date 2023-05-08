@@ -112,10 +112,6 @@ export const LoginTab = () => {
                   : styles.tab_button
                }
             >{ loading ? <Loader/> : 'Войти' }</button>
-
-         <div onClick={() => dispatch(togglePopup())}  >
-            <Link href="/reset-password" className={styles.tab_link} >Я забыл пароль</Link>
-         </div> 
          <div className={styles.popup__errors}>
             {serverError}
          </div>

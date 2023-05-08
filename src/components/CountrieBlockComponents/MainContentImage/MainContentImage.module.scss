@@ -103,6 +103,8 @@
 	right: 20px;
 	bottom: 10px;
 	opacity: 1;
+	display: flex;
+	align-items: center;
 }
 
 .img__wrapper:hover .content__title{
@@ -206,5 +208,23 @@
 
 	.limiter .link{
 		right: 50%;
+	}
+}
+
+
+@media (max-width:500px) {
+
+
+	.content__text_title{
+		margin: 10px 0px;
+	}
+
+	.link{
+		width: 120px;
+		height:30px;
+		&_order{
+			width: 120px;
+			height:30px;
+		}
 	}
 }
