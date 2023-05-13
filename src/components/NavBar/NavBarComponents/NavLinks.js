@@ -48,7 +48,7 @@ export function OrderTicketTransition() {
 	return (
 		<ul>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
@@ -57,7 +57,7 @@ export function OrderTicketTransition() {
 				</Link>
 			</li>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
@@ -66,7 +66,7 @@ export function OrderTicketTransition() {
 				</Link>
 			</li>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
@@ -75,7 +75,7 @@ export function OrderTicketTransition() {
 				</Link>
 			</li>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
@@ -84,7 +84,7 @@ export function OrderTicketTransition() {
 				</Link>
 			</li>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
@@ -93,7 +93,7 @@ export function OrderTicketTransition() {
 				</Link>
 			</li>
 			<li
-				className="navMobileLink"
+				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link

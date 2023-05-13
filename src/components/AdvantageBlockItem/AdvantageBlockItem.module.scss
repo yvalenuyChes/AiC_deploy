@@ -24,10 +24,17 @@
 	&_img{
 	padding-top: 10%;
 	height: 80px;
-	width: 80px;}
+	width: 80px;
+	}
 
 	img{
 		height: 100%;
 		width: 100%;
 	}
+}
+
+.motionDiv{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

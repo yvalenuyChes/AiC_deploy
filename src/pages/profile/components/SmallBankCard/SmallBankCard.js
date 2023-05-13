@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { motion,  useAnimation} from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { setColor, setMessage, removeMessage, removeColor } from '@/redux/slices/AppMessage'
 import axios from 'axios'
 import styles from './styles.module.scss'
@@ -15,6 +17,11 @@ export default function SmallBankCard ({
 }) {
 
    const number =  cardNumber ? cardNumber.toString() : ''
+
+   const variants = {
+		visible: {opacity : 1, transition:{duration:1}},
+		hidden: {opacity:0}
+	 }
 
    const [active, setActive] = useState(false)
 
@@ -70,8 +77,26 @@ export default function SmallBankCard ({
       setReloadCards(prev => prev + Date.now())
    }
 
+   const controls = useAnimation()
+	const [ref, inView] = useInView({
+		threshold: 0,
+	})
+
+	useEffect(() => {
+		if(inView){
+			controls.start('visible')
+		}
+		
+	}, [controls, inView])
+
    return(
-      <div
+      <motion.div
+         ref={ref}
+         animate={controls}
+         variants={variants}
+         initial='hidden'
+      >
+ <div
       className={
          number == AiC_creditCard
          ?    
@@ -119,6 +144,8 @@ export default function SmallBankCard ({
          }
         
          </div>
+      </motion.div>
+     
       
    )
 }

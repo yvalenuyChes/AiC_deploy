@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { motion,  useAnimation} from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,7 +16,8 @@ export default function MainContentImg({
 	content__text_subtitle, 
 	value, 
 	link,
-	orderLink
+	orderLink,
+	variants
 }) {
 
 	const isLogin = useSelector(state => state.isAuth.isAuth)
@@ -22,7 +25,17 @@ export default function MainContentImg({
 	const [price, setPrice] = useState()
 
 
-	
+	const controls = useAnimation()
+	const [ref, inView] = useInView({
+		threshold: 0,
+	})
+
+	useEffect(() => {
+		if(inView){
+			controls.start('visible')
+		}
+		
+	}, [controls, inView])
 
 	useEffect(() => {
 		axios
@@ -35,7 +48,14 @@ export default function MainContentImg({
 	}, [])
 
 	return (
-		<div className={ 
+		<motion.div
+		ref={ref}
+		animate={controls}
+		variants={variants}
+		initial='hidden'
+		
+		>
+<div className={ 
 			limiter 
 			? `${styles.contentCountries__wrapper} ${styles.limiter}` 
 			: `${styles.contentCountries__wrapper}` 
@@ -76,5 +96,7 @@ export default function MainContentImg({
 				</div>
 			</div>
 		</div>
+		</motion.div>
+		
 	)
 }

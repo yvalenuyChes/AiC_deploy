@@ -47,12 +47,6 @@ export default function CountrieBlockGallery() {
 		<div className={styles.imgGallary}>
 			
 				<div className={styles.niderlands}>
-					<motion.div
-					ref={ref}
-					animate={controls}
-					variants={bigPictureAnimationVariants}
-					initial='hidden'
-					>
 					<MainContentImg
 						limiter= {true}
 						imgSrc={MSK}
@@ -61,18 +55,12 @@ export default function CountrieBlockGallery() {
 						value='200'
 						link={'/cities/moscow'}
 						orderLink={'cities/moscow#moscow_order_ticket'}
+						variants={bigPictureAnimationVariants}
 					/>
-					</motion.div>
 				</div>
 			
 		
 			<div className={styles.maldives}>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={smallPictureLeftAnimationVariants}
-					initial='hidden'
-					>
 				<MainContentImg
 					imgSrc={SOCHI}
 					title="Сочи"
@@ -80,16 +68,10 @@ export default function CountrieBlockGallery() {
 					value='500'
 					link={'/cities/sochi'}
 					orderLink={'/cities/sochi#sochi_order_ticket'}
+					variants={smallPictureLeftAnimationVariants}
 				/>
-				</motion.div>
 			</div>
 			<div className={styles.vengria}>
-				<motion.div
-						ref={ref}
-						animate={controls}
-						variants={smallPictureRightAnimationVariants}
-						initial='hidden'
-				>
 					<MainContentImg
 						imgSrc={KAZ}
 						title="Казань"
@@ -97,17 +79,12 @@ export default function CountrieBlockGallery() {
 						value='250'
 						link={'/cities/kazan'}
 						orderLink={'cities/kazan#kazan_order_ticket'}
+						variants={smallPictureRightAnimationVariants}
 					/>
-				</motion.div>
 			
 			</div>
 			<div className={styles.mram}>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={bigPictureAnimationVariants}
-					initial='hidden'
-				>
+
 					<MainContentImg
 						limiter={true}
 						imgSrc={SPB}
@@ -116,17 +93,11 @@ export default function CountrieBlockGallery() {
 						value='100'
 						link={'/cities/saint_petersburg'}
 						orderLink={'/cities/saint_petersburg#spb_order_ticket'}
+						variants={bigPictureAnimationVariants}
 					/>
-				</motion.div>
 			
 			</div>
 			<div className={styles.newYork}>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={smallPictureLeftAnimationVariants}
-					initial='hidden'
-				>
 					<MainContentImg
 						imgSrc={BARN}
 						title="Барнаул"
@@ -134,17 +105,11 @@ export default function CountrieBlockGallery() {
 						value='350'
 						link={'/cities/barnayl'}
 						orderLink={'cities/barnayl#barnayl_order_ticket'}
+						variants={smallPictureLeftAnimationVariants}
 					/>
-				</motion.div>
 			
 			</div>
 			<div className={styles.kanada}>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={smallPictureRightAnimationVariants}
-					initial='hidden'
-				>
 					<MainContentImg
 						imgSrc={VIB}
 						title="Выборг"
@@ -152,8 +117,8 @@ export default function CountrieBlockGallery() {
 						value='120'
 						link={'/cities/viborg'}
 						orderLink={'/cities/viborg#viborg_order_ticket'}
+						variants={smallPictureRightAnimationVariants}
 					/>
-				</motion.div>
 				
 			</div>
 		</div>

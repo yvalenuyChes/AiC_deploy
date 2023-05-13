@@ -28,7 +28,7 @@ export function forTootists() {
 
 export function moreAboutCompany() {
 	return (
-		<ul lassName="accordionList">
+		<ul className="accordionList">
 			<li>{ABOUT_COMPANY_FIRST_ITEM}</li>
 			<li>{ABOUT_COMPANY_SECOND_ITEM}</li>
 			<li>{ABOUT_COMPANY_THIRD_ITEM}</li>

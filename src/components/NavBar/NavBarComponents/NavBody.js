@@ -53,7 +53,7 @@ export default function NavBody() {
 				</div>
 				<div
 					onClick={() => dispatch(toggleNavOpen())}
-					className={styles.nav_phones__body_item}
+					className={styles.nav_phones__body_item + ' ' + styles.navMobileLink}
 				>
 					{
 						isLogin

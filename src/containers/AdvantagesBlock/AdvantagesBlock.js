@@ -54,60 +54,30 @@ export default function Advantages() {
 				<h2 className={osvald.className} >Почему именно наша фирма?</h2>
 			</div>
 			<div className={styles.advantagesBlock__body}>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={squereLeftAnimationVariants}
-					initial='hidden'
-					className={styles.motionDiv}
-				>
 					<AdvantagesItem
 						title="Огромный выбор"
 						subtitle={FIRST_ITEM_TEXT}
 						img={planet}
+						variants={squereLeftAnimationVariants}
 					/>
-				</motion.div>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={squereRightAnimationVariants}
-					initial='hidden'
-					className={styles.motionDiv}
-				>
 					<AdvantagesItem
 						title="Надежность"
 						subtitle={SECOND_ITEM_TEXT}
 						img={tip}
+						variants={squereRightAnimationVariants}
 					/>
-				</motion.div>
-				<motion.div
-					ref={ref}
-					animate={controls}
-					variants={squereLeftAnimationVariants}
-					initial='hidden'
-					className={styles.motionDiv}
-				>
 					<AdvantagesItem
 						title="Работаем для вас"
 						subtitle={THIRD_ITEM_TEXT}
 						img={hands}
+						variants={squereLeftAnimationVariants}
 					/>
-				</motion.div>
-				<motion.div
-					
-					ref={ref}
-					animate={controls}
-					variants={squereRightAnimationVariants}
-					initial='hidden'
-					className={styles.motionDiv}
-				>
 					<AdvantagesItem
 						title="Стабильность"
 						subtitle={FOURTH_ITEM_TEXT}
 						img={ten}
+						variants={squereRightAnimationVariants}
 					/>
-				</motion.div>
-				
 			</div>
 		</section >
 	)
