@@ -78,7 +78,7 @@ export default function NavBody() {
 					>Авторизация</div>
 				}				
 					<Modal
-					
+						style={{overflow:'auto'}}
 						disablePortal
 						open={popupOpen}
 						slots={{ backdrop: Backdrop }}
