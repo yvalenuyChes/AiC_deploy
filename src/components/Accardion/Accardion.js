@@ -1,7 +1,14 @@
 import { useState } from "react"
+import { Oswald } from '@next/font/google'
 import { CSSTransition } from 'react-transition-group'
 import styles from './Accardion.module.scss'
 
+
+const osvald = Oswald({
+	subsets:['cyrillic'],
+	weight:'400'
+
+})
 
 export default function AccordionBlock({ title, content }) {
 
@@ -20,7 +27,7 @@ export default function AccordionBlock({ title, content }) {
 					? `${styles.accordion__arrow + ' ' + styles.active}`
 					: `${styles.accordion__arrow}`
 					} />
-				<h3>{title}</h3>
+				<h3 className={osvald.className} >{title}</h3>
 			</div>
 			<div className={styles.accordion__content}>
 				<CSSTransition

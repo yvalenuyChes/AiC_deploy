@@ -5,6 +5,7 @@ import {
    SECOND_ITEM_TEXT, 
    THIRD_ITEM_TEXT 
 } from '../../components/AdvantageBlockItem/AdvantageBlockText/AdvantageBlockText'
+import { Oswald } from '@next/font/google'
 import styles from './AdvantagesBlock.module.scss'
 
 import planet from '../../images/advantagesImg/planet.svg'
@@ -12,12 +13,19 @@ import tip from '../../images/advantagesImg/tip.svg'
 import hands from '../../images/advantagesImg/hands.svg'
 import ten from '../../images/advantagesImg/number.svg'
 
+
+const osvald = Oswald({
+	subsets:['cyrillic'],
+	weight:'400'
+
+})
+
 export default function Advantages() {
 
 	return (
 		<section className={styles.advantagesBlock} id="advantages">
 			<div className={styles.advantagesBlock__title}>
-				<h2>Почему именно наша фирма?</h2>
+				<h2 className={osvald.className} >Почему именно наша фирма?</h2>
 			</div>
 			<div className={styles.advantagesBlock__body}>
 				<AdvantagesItem

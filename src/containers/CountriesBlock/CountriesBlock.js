@@ -1,10 +1,19 @@
 import { useSelector } from 'react-redux'
 import CountrieBlockGallery from '../../components/CountrieBlockComponents/CountryBlockGallery/CountryBlockGallery'
+import { Oswald } from '@next/font/google'
 import styles from './CountriesBlock.module.scss'
+
+const osvald = Oswald({
+	subsets:['cyrillic'],
+	weight:'400'
+
+})
 
 export default function CountrieBlock() {
 
 	const isLogin = useSelector(state => state.isAuth.isAuth)
+
+
 
 
 	return (
@@ -16,7 +25,10 @@ export default function CountrieBlock() {
 						{
 								isLogin
 								? null
-								: 	'Чтобы заказать билет, Вы должны зарегистрироваться'
+								: 	<div> 
+									Чтобы заказать билет, Вы должны зарегистрироваться 
+									<br/>
+									</div>
 						}
 					
 						<br/>
@@ -25,7 +37,7 @@ export default function CountrieBlock() {
 				
 					
 					<div className={styles.main_content__country_name} >
-						<h3>
+						<h3 className={osvald.className} >
 							Россия
 						</h3>
 					</div>

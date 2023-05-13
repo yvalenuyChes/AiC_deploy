@@ -45,7 +45,7 @@ export default function NavBody() {
 				</div>
 				<div className={styles.nav_phones__body_item}>
 					<AccordionBlock
-						title="Заказать билет"
+						title="Города"
 						content={<OrderTicketTransition />}
 					/>
 				</div>

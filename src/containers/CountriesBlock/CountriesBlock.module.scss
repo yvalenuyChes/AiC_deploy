@@ -7,9 +7,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
 		height: 200px;
 		width: 100%;
-		border: 2px solid rgb(224, 70, 70);
+		border: 4px solid rgb(224, 70, 70);
 		border-radius: 20px;
 	}
 
@@ -27,4 +28,9 @@
 	}
 
 
+	@media (max-width:767px) {
+		.main_content__country_name{
+			padding: 40px 0;
+			}
+	}
 

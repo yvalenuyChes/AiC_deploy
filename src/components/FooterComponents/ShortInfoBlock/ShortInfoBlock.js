@@ -15,7 +15,7 @@ export default function ShortInfoBlock() {
 				</div>
 			</div>
 			<div className={classes.footer__bottom}>
-				<h3 className={classes.copyraiting}>2019-2023 © Alise in Wonderland</h3>
+				<h3 className={classes.copyraiting}>2019-{new Date().getFullYear()} © Alise in Wonderland</h3>
 				<div className={classes.footer__socialLinks}>
 					<div className={`${classes.vk} ${classes.socialLink}`}>
 						<FontAwesomeIcon icon={faVk} />

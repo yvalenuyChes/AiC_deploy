@@ -27,8 +27,9 @@ function Header() {
                За пределами стен есть то, что может тебя поразить
                </h2>
 				</div>
+				<div className={styles.header__squere} />
 			</div>
-			<div className={styles.header__squere} />
+			
 		</header>
 	)
 }

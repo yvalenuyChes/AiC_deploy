@@ -12,18 +12,9 @@ export function MainPageTransitions() {
 			<li
 				className={styles.navMobileLink}
 				onClick={() => {dispatch(toggleNavOpen())}}
-				>
-				<Link
-					href='/'>
-						Главная
-				</Link>
-			</li>
-			<li
-				className={styles.navMobileLink}
-				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/#toor_order'>
+					href='/#main__content'>
 				Заказ билета
 				</Link>
 			</li>
@@ -61,7 +52,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/moscow#moscow_order_ticket'>
+					href='/cities/moscow'>
 						Москва
 				</Link>
 			</li>
@@ -70,7 +61,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/saint_petersburg#spb_order_ticket'>
+					href='/cities/saint_petersburg'>
 						Санкт-Петербург
 				</Link>
 			</li>
@@ -79,7 +70,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/viborg#viborg_order_ticket'>
+					href='/cities/viborg'>
 						Выборг
 				</Link>
 			</li>
@@ -88,7 +79,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/kazan#kazan_order_ticket'>
+					href='/cities/kazan'>
 						Казань
 				</Link>
 			</li>
@@ -97,7 +88,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/sochi#sochi_order_ticket'>
+					href='/cities/sochi'>
 						Сочи
 				</Link>
 			</li>
@@ -106,7 +97,7 @@ export function OrderTicketTransition() {
 				onClick={() => {dispatch(toggleNavOpen())}}
 			>
 				<Link
-					href='/cities/barnayl#barnayl_order_ticket'>
+					href='/cities/barnayl'>
 						Барнаул
 				</Link>
 			</li>
