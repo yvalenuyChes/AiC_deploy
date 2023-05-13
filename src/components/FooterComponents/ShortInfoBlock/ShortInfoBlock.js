@@ -8,7 +8,7 @@ export default function ShortInfoBlock() {
 			<div className={classes.footer__logo} />
 			<div className={classes.footer__text}>
 				<h4> <span>Alice in Wonderland</span> — туристическая компания, <br /> которая сделает всё максимально быстро, <br /> удобно и качественно!</h4>
-				<p>Наш офис находится по адресу: Г. Санкт-Петербург улица Бессовая, дом 13 корпус 6</p>
+				<p>Наш офис находится по адресу: г. Санкт-Петербург улица Бессовая, дом 13 корпус 6</p>
 				<div className={classes.footer__telephone}>
 					<h3>+7 911 911 11 11</h3>
 					<h3>+7 922 922 22 22</h3>

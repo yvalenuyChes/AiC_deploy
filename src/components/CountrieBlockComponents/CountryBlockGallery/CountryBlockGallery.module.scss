@@ -14,10 +14,10 @@
     "newYork kanada";
 }
 
-.niderlands { grid-area: niderlands; }
+.niderlands { grid-area: niderlands; overflow: hidden; }
 .maldives { grid-area: maldives; }
 .vengria { grid-area: vengria; }
-.mram { grid-area: mram; }
+.mram { grid-area: mram; overflow: hidden; }
 .NY { grid-area: NY; }
 .kanada { grid-area: kanada; }
 

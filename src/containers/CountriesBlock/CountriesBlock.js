@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { motion,  useAnimation} from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import CountrieBlockGallery from '../../components/CountrieBlockComponents/CountryBlockGallery/CountryBlockGallery'
 import { Oswald } from '@next/font/google'
 import styles from './CountriesBlock.module.scss'
@@ -13,7 +16,21 @@ export default function CountrieBlock() {
 
 	const isLogin = useSelector(state => state.isAuth.isAuth)
 
+	const controls = useAnimation()
+	const [ref, inView] = useInView()
 
+
+	useEffect(() => {
+		if(inView){
+			controls.start('visible')
+		}
+		
+	}, [controls, inView])
+
+	 const titleAnimationVariants = {
+		visible: {opacity : 1, y: 0, transition:{duration:1}},
+		hidden: {opacity:1, y:100}
+	 }
 
 
 	return (
@@ -32,14 +49,22 @@ export default function CountrieBlock() {
 						}
 					
 						<br/>
-						На данный момент пушешествия возможны только по России
+						На данный момент путешествия возможны только по России
 					</div>
-				
-					
-					<div className={styles.main_content__country_name} >
-						<h3 className={osvald.className} >
-							Россия
-						</h3>
+					<div className={styles.main_content__country_name}>
+						<motion.div
+						ref={ref}
+						animate={controls}
+						variants={titleAnimationVariants}
+						initial='hidden'
+						
+						>
+						
+								<h3 className={osvald.className} >
+									Россия
+								</h3>
+							
+						</motion.div>
 					</div>
 				<CountrieBlockGallery />
 			</div>
