@@ -3,6 +3,7 @@
 @import './AdvantagesBlockAdaptive.module.scss';
 
 .advantagesBlock{
+	overflow: hidden;
 	@include container;
 
 	&__title{

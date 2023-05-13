@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Oswald } from '@next/font/google'
-import { CSSTransition } from 'react-transition-group'
+import { motion,  useAnimation} from 'framer-motion'
 import styles from './Accardion.module.scss'
 
 
@@ -10,9 +10,27 @@ const osvald = Oswald({
 
 })
 
+
+
 export default function AccordionBlock({ title, content }) {
 
+	const controls = useAnimation()
+
+	const animation = {
+		visible: { y: 0, transition:{duration:1}, display:'block' },
+		hidden: {display:'none', y: -200, transition:{duration:1}}
+	 }
+
 	const [active, toggleActive] = useState(false)
+
+	useEffect(() => {
+		if(active){
+			controls.start('visible')
+		}else{
+			controls.start('hidden')
+		}
+		
+	}, [controls, active])
 
 	return (
 		<div className={styles.accordion}>
@@ -30,15 +48,13 @@ export default function AccordionBlock({ title, content }) {
 				<h3 className={osvald.className} >{title}</h3>
 			</div>
 			<div className={styles.accordion__content}>
-				<CSSTransition
-					in={active}
-					timeout={500}
-					classNames={styles.accordionList}
-					unmountOnExit
-					mountOnEnter
+				<motion.div
+					animate={controls}
+					variants={animation}
+					initial='hidden'
 				>
 					{content}
-				</CSSTransition>
+				</motion.div>
 			</div>
 		</div>
 	)
