@@ -20,7 +20,7 @@ export default function App({ Component, ...rest }) {
   const router = useRouter()
 
   return <Provider store={store} >
-    <AnimatePresence mode='wait' >
+    <AnimatePresence >
       <motion.div
         transition={{
           duration: 0.75
