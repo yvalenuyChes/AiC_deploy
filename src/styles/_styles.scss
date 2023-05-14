@@ -9,6 +9,10 @@ html {
   font-family: 'Source Sans Pro', sans-serif;
  }
 
+ body{
+  min-height: 100%;
+ }
+
 .bodyLock{
 	overflow: hidden;
 }

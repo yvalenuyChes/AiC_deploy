@@ -57,10 +57,12 @@ export default function Profile(){
    // }
 
    return(
+      <>
+      <Head>
+         <title>Профиль</title>
+      </Head>
       <MainPage>
-         <Head>
-            <title>Профиль</title>
-         </Head>
+        
          <div className={styles.wrapper} >
          {
             isLogin
@@ -201,5 +203,6 @@ export default function Profile(){
          }
          </div>
       </MainPage>
+      </>
    )
 }

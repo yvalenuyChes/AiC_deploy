@@ -1,14 +1,16 @@
 import { Provider } from 'react-redux'
 import { wrapper } from '@/redux/store'
-import {motion} from 'framer-motion'
 import {useRouter} from 'next/router'
+import {motion} from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 import '../styles/_styles.scss'
-import { AnimatePresence } from 'framer-motion'
+
 
 export default function App({ Component, ...rest }) {
 
@@ -30,15 +32,15 @@ export default function App({ Component, ...rest }) {
         variants={{
           initialState:{
             opacity:0,
-            clipPath:'polygon(0 0, 100% 0,  100% 100%, 0 100%)'
+            // clipPath:'polygon(0 0, 100% 0,  100% 100%, 0 100%)'
           },
           animateState:{
             opacity:1,
-            clipPath:'polygon(0 0, 100% 0,  100% 100%, 0 100%)'
+           // clipPath:'polygon(0 0, 100% 0,  100% 100%, 0 100%)'
           },
 
           exitState:{
-            clipPath:'polygon(50% 0, 50% 0,  50% 100%, 50% 100%)'
+           // clipPath:'polygon(50% 0, 50% 0,  50% 100%, 50% 100%)'
           }
         }}
       >
