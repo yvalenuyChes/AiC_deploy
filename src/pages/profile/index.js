@@ -155,6 +155,7 @@ export default function Profile(){
                                        key={key}
                                        userEmail={user.email}
                                        setReloadCards={setReloadCards}
+                                       reload={reloadCards}
                                     />
                                  )
                               })

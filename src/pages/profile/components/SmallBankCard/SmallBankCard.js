@@ -13,7 +13,8 @@ export default function SmallBankCard ({
    brand,
    bank,
    userEmail,
-   setReloadCards
+   setReloadCards,
+   reload
 }) {
 
    const number =  cardNumber ? cardNumber.toString() : ''
@@ -31,7 +32,7 @@ export default function SmallBankCard ({
 
    useEffect(() => {
       setAiC_creditCard(localStorage.getItem('AiW_Credit_Card')) 
-   }, [active])
+   }, [active, reload ])
 
    const removeCardHandler = () => {
       setLoading(true)

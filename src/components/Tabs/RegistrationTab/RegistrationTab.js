@@ -44,7 +44,7 @@ const RegistrationTab = () => {
          url:'https://aic-api.onrender.com/signup',
          data:{
             name: values.name.trim(),
-            email:values.email.trim(),
+            email:values.email.trim().toLocaleLowerCase(),
             password: values.password.trim(),
          }
       }
