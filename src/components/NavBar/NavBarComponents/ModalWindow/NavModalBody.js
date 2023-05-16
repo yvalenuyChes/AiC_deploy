@@ -7,7 +7,7 @@ import { togglePopup } from '@/redux/slices/openPopup'
 import styles from './NavModalBody.module.scss'
 
 
-function  ModalBody ({modalBodyRef, ...props}) {
+const  ModalBody = React.forwardRef((props, modalBodyRef ) => {
 
 	const dispatch = useDispatch()
 
@@ -33,5 +33,8 @@ function  ModalBody ({modalBodyRef, ...props}) {
 	)
 
 
-}
-export default React.forwardRef((ref, ...props) => ModalBody(ref, ...props))
+})
+
+ModalBody.displayName = 'ModalBody'
+
+export default ModalBody
