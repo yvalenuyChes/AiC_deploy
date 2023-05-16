@@ -2,7 +2,7 @@
 @import '../../styles/_mixins';
 
 .header{
-	margin: $indent;
+	// margin: $indent;
 	position: relative;
 	min-height: 100vh;
 	display: flex;
@@ -66,11 +66,11 @@
 
 }
 
-@media (max-width: 768px) {
-	.header{
-		margin-bottom: 60px;
-	}
-}
+// @media (max-width: 768px) {
+// 	.header{
+// 		margin-bottom: 60px;
+// 	}
+// }
 
 @media (max-width: 400px) {
 	.header__squere{

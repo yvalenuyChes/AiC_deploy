@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion,  useAnimation} from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import CountrieBlockGallery from '../../components/CountrieBlockComponents/CountryBlockGallery/CountryBlockGallery'
 import { Oswald } from '@next/font/google'
 import styles from './CountriesBlock.module.scss'
+import { togglePopup } from '@/redux/slices/openPopup'
 
 const osvald = Oswald({
 	subsets:['cyrillic'],
@@ -13,6 +14,8 @@ const osvald = Oswald({
 })
 
 export default function CountrieBlock() {
+
+	const dispatch = useDispatch()
 
 	const isLogin = useSelector(state => state.isAuth.isAuth)
 
@@ -38,12 +41,17 @@ export default function CountrieBlock() {
 			<div className={styles.main_content__container}>
 				
 				
-					<div className={styles.main_content__warning} >
+					<div className={styles.main_content__warning} id='main__content_warning' >
 						{
 								isLogin
 								? null
-								: 	<div> 
-									Чтобы заказать билет, Вы должны зарегистрироваться 
+								: 	<div > 
+									Чтобы заказать билет, Вы должны 
+										<span onClick={() => dispatch(togglePopup())} 
+											className={styles.main_content__warning_registr}
+										> 
+										{` зарегистрироваться`}
+										</span>  
 									<br/>
 									</div>
 						}

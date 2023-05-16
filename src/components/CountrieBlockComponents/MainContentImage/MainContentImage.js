@@ -81,12 +81,13 @@ export default function MainContentImg({
 							Заказать билет
 						</Link>
 						:
-						<button
+						<Link
+							href={'/#main__content'}
 							className={`${styles.link_order + ' ' + styles.disabled}`
 						}
 						>
 						Заказать билет
-						</button>
+						</Link>
 					}
 					
 					<Link

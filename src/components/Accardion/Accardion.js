@@ -17,7 +17,7 @@ export default function AccordionBlock({ title, content }) {
 	const controls = useAnimation()
 
 	const animation = {
-		visible: { y: 0, transition:{duration:1}, display:'block',  height:200 },
+		visible: { y: 0, transition:{duration:0.5}, display:'block',  height:200 },
 		hidden: {display:'none', y: -200, transition:{duration:0.5},  height:0}
 	 }
 

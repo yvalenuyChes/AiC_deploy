@@ -1,7 +1,8 @@
 .main_content{
-	margin:0 0 100px 0;
+	padding: 100px 0 100px 0;
 
 	&__warning{
+		text-align: center;
 		padding: 20px;
 		font-size: calc(15px + 7 * ((100vw - 320px) / (1280 - 320)));
 		display: flex;
@@ -12,6 +13,16 @@
 		width: 100%;
 		border: 4px solid rgb(224, 70, 70);
 		border-radius: 20px;
+
+		&_registr{
+			cursor: pointer;
+			transition: all .5s ease;
+			color: #298cad;
+
+			&:hover{
+				color: black;
+			}
+		}
 	}
 
 	&__country_name{
@@ -31,7 +42,8 @@
 	@media (max-width:767px) {
 
 		.main_content{
-			margin: 0;
+			padding: 100px 0px 0px 0px;
+
 		}
 
 		.main_content__country_name{
