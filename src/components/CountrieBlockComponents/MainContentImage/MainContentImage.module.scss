@@ -3,12 +3,10 @@
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
-	filter: grayscale(60%);
+	
 
 
-	&:hover{
-		filter: grayscale(0);
-	}
+	
 }
 
 .blockImg{
@@ -25,6 +23,13 @@
 		width: 100%;
 		height: 100%;
 		transition: .5s;
+		filter: grayscale(90%);
+		opacity: .5;
+
+		&:hover{
+			filter: grayscale(0);
+			opacity: 1;
+		}
 }
 
 .block_text{
