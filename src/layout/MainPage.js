@@ -7,17 +7,31 @@ import NavBar from '../components/NavBar/NavBar'
 import { AppMessage } from '@/components/AppMessage/AppMessage'
 
 import styles from './styles.module.scss'
+import Loader from '@/components/Loader/Loader'
 
 export default function MainPage({ children }) {
 
 
 	const cookies = new Cookies()
 	const dispatch = useDispatch()
+	const [loading, setLoading] = useState(true)
 	
 	useEffect(()=> {
 	  if(cookies.get('TOKEN')){
 		 dispatch(setAuthTrue())
 	  }
+	  window.addEventListener('scroll', handleScroll)
+	  const wrapper = document.querySelector(`.${styles.wrapper}`)
+	  if(navOpen){
+		  wrapper.classList.add(`${styles.blur}`)
+	  }else{
+		  wrapper.classList.remove(`${styles.blur}`)
+	  }
+	  setLoading(false)
+	  return () => {
+		  window.removeEventListener('scroll', handleScroll)
+	  }
+	  
 	}, [])
 
 
@@ -41,26 +55,17 @@ export default function MainPage({ children }) {
 		toggleLastScrolling(lastScrolling = scrollTop)
 	}
 
-
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll)
-		const wrapper = document.querySelector(`.${styles.wrapper}`)
-		if(navOpen){
-			wrapper.classList.add(`${styles.blur}`)
-		}else{
-			wrapper.classList.remove(`${styles.blur}`)
-		}
-		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [navOpen])
-
 	return (
 		<>
 			{scrolling ? null : <NavBar />}
 
 				<main className={styles.wrapper}>
-					{children}
+					{
+						loading
+						? <div className={styles.loader} >  <Loader/> </div>
+						:	children
+					
+					}
 				</main>
 				<AppMessage/>
 				<ButtonToTop />
