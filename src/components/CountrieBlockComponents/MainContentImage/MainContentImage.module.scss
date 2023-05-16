@@ -1,7 +1,14 @@
 .img__wrapper{
+	transition: all .5s ease;
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
+	filter: grayscale(60%);
+
+
+	&:hover{
+		filter: grayscale(0);
+	}
 }
 
 .blockImg{
@@ -87,7 +94,6 @@
 
 
 .content__title{
-	font-family: 'Caveat', cursive;
 	font-size: calc(40px + 15 * ((100vw - 320px) / (1280 - 320)));
 	transition: .5s ease;
 	position: absolute;

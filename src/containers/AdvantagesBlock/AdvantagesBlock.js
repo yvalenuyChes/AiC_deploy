@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import { motion,  useAnimation} from 'framer-motion'
+import { useAnimation} from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 import AdvantagesItem from '../../components/AdvantageBlockItem/AdvantageBlockItem'
@@ -25,11 +25,6 @@ const osvald = Oswald({
 })
 
 export default function Advantages() {
-
-
-	const controls = useAnimation()
-	const [ref, inView] = useInView()
-
 	
 	const squereLeftAnimationVariants = {
 		visible: {opacity : 1, x: 0, transition:{duration:1}},
@@ -41,12 +36,6 @@ export default function Advantages() {
 		hidden: {opacity:0, x: 100}
 	 }
 
-	 useEffect(() => {
-		if(inView){
-			controls.start('visible')
-		}
-		
-	}, [controls, inView])
 
 	return (
 		<section className={styles.advantagesBlock} id="advantages">

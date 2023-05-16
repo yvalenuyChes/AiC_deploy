@@ -4,10 +4,16 @@ import { useInView } from 'react-intersection-observer'
 import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
+import {Caveat} from 'next/font/google'
 
 import styles from './MainContentImage.module.scss'
 import { useSelector } from 'react-redux'
 import Loader from '@/components/Loader/Loader'
+
+const caveat = Caveat({
+	subsets:['cyrillic'],
+	weight:'600'
+})
 
 export default function MainContentImg({ 
 	limiter, 
@@ -64,7 +70,7 @@ export default function MainContentImg({
 				<div className={styles.blockImg}>
 					<Image src={imgSrc} className={styles.img_countries} alt="toorfirmImg" />
 					<div className={styles.block_text}>
-						<h2 className={styles.content__title}>{title}</h2>
+						<h2 className={styles.content__title + ' ' + caveat.className}>{title}</h2>
 						<span className={styles.content__price}>Цена за билет: от { price ? value * price : <Loader/>} руб</span>
 						<div className={styles.content__text}>
 							<div className={styles.content__text_title}>Предлагаем Вам посетить...</div>
