@@ -20,7 +20,7 @@ export default function App({ Component, ...rest }) {
   const router = useRouter()
 
   return <Provider store={store} >
-    <AnimatePresence mode='wait' >
+    <AnimatePresence mode='popLayout' >
       <motion.div
         style={{overflow:'hidden'}}
         transition={{
