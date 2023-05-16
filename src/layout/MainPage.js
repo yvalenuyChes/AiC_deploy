@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Backdrop, Fade, Modal } from '@mui/material'
+import ModalBody from '../components/NavBar/NavBarComponents/ModalWindow/NavModalBody'
 import { setAuthTrue } from '@/redux/slices/isAuth'
 import Cookies from 'universal-cookie'
 import ButtonToTop from '../components/ButtonToTop/ButtonToTop'
@@ -11,10 +13,13 @@ import Loader from '@/components/Loader/Loader'
 
 export default function MainPage({ children }) {
 
-
+	const ref = createRef(null)
+	const popupOpen = useSelector(state => state.openPopup.openPopup)
 	const cookies = new Cookies()
 	const dispatch = useDispatch()
 	const [loading, setLoading] = useState(true)
+
+	const navOpen = useSelector(state => state.navOpen.navOpen)
 	
 	useEffect(()=> {
 	  if(cookies.get('TOKEN')){
@@ -32,10 +37,10 @@ export default function MainPage({ children }) {
 		  window.removeEventListener('scroll', handleScroll)
 	  }
 	  
-	}, [])
+	}, [navOpen])
 
 
-	const navOpen = useSelector(state => state.navOpen.navOpen)
+	
 
 	const [scrolling, toggleScrolling] = useState(false)
 	let [lastScrolling, toggleLastScrolling] = useState(0)
@@ -69,6 +74,30 @@ export default function MainPage({ children }) {
 				</main>
 				<AppMessage/>
 				<ButtonToTop />
+				<div>
+					<Modal
+						style={{overflow:'auto'}}
+						disablePortal
+						open={popupOpen}
+						slots={{ backdrop: Backdrop }}
+						closeAfterTransition
+						slotProps={{
+						  backdrop: {
+							 timeout: 500,
+						  },
+						}}
+					>
+						<Fade in={popupOpen} timeout={500} >
+							<div>
+								{<ModalBody ref={ref} />}
+							</div>
+						
+						</Fade>
+							
+						
+					
+					</Modal>
+				</div>	
 		</>
 	)
 }

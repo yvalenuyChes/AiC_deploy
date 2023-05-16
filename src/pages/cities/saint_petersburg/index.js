@@ -15,7 +15,7 @@ export default function Saint_petersburg(){
    return(
       <CityPage
          cityName={'Санкт-Петербург'}
-         cityNameEng={'spb'}
+         cityNameEng={'saint_petersburg'}
 
          firstImage={styles.kitchenFirstImage}
          firstText={FIRST_TEXT_ITEM}

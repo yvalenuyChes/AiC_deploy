@@ -1,10 +1,11 @@
+
 import { useSelector, useDispatch } from 'react-redux'
-import { Backdrop, Modal } from '@mui/material';
+
 import Cookies from 'universal-cookie'
 import Link from 'next/link'
 import { MainPageTransitions, OrderTicketTransition } from './NavLinks'
 import AccordionBlock from '../../Accardion/Accardion'
-import ModalBody from './ModalWindow/NavModalBody'
+
 import { toggleNavOpen } from '@/redux/slices/openNav'
 import { togglePopup } from '@/redux/slices/openPopup'
 import styles from './NavBarComponents.module.scss'
@@ -12,8 +13,10 @@ import { setAuthFalse } from '@/redux/slices/isAuth';
 
 
 
+
 export default function NavBody() {
 
+	
 
 	const cookies = new Cookies()
 
@@ -21,12 +24,15 @@ export default function NavBody() {
 
 	const logout = () => {
 		cookies.remove('TOKEN', {path: '/'})
+		if(window !== undefined){
+			localStorage.removeItem('AiW_Credit_Card')
+		}
 		dispatch(setAuthFalse())
 		dispatch(toggleNavOpen())
 	}
 
 	const navOpen = useSelector(state => state.navOpen.navOpen)
-	const popupOpen = useSelector(state => state.openPopup.openPopup)
+
 	const dispatch = useDispatch()
 
 	function PopupHandler (){
@@ -34,8 +40,9 @@ export default function NavBody() {
 		dispatch((togglePopup()))
 	}
 
+
 	return (
-		<div className={navOpen ? `${styles.nav_phones__body + ' ' + styles.active}` : `${styles.nav_phones__body}`}>
+		<div className={navOpen ? `${styles.nav_phones__body + ' ' + styles.active}` : `${styles.nav_phones__body}`}  >
 			<div className={styles.nav_phones__body_itemWrapper}>
 				<div className={styles.nav_phones__body_item}>
 					<AccordionBlock
@@ -76,21 +83,9 @@ export default function NavBody() {
 						onClick={ PopupHandler}
 						id="auth"
 					>Авторизация</div>
-				}				
-					<Modal
-						style={{overflow:'auto'}}
-						disablePortal
-						open={popupOpen}
-						slots={{ backdrop: Backdrop }}
-						closeAfterTransition
-						slotProps={{
-						  backdrop: {
-							 timeout: 500,
-						  },
-						}}
-					>
-						<ModalBody />
-					</Modal>
+				}			
+				
+				
 				</div>
 			</div>
 		</div >

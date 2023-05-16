@@ -11,12 +11,6 @@ import Cookies from 'universal-cookie'
 
 export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCard}) {
 
-
- //!!!!!!!!!!!!!!!!!!! СТРАННЫЙ БАГ, ПРИ ПЕРЕХОДЕ ИЗ ФОРМЫ ЗАКАЗА БИЛЕТА КАРТА НЕ ПОДГРУЖАЕТСЯ ПРИ ЗАПОЛНЕНИИ 
-
-
-
-
    const [cardData, setCardData] = useState(null)
    const [email, setEmail] = useState(null)
 
@@ -109,7 +103,8 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
 
     const holderNameHandler = event => {
       
-         setHolderName((event.target.value).replace(/[а-яё]+/i, ""))
+
+          setHolderName((event.target.value).replace(/[^A-Za-z]/g, ""))
       
     }
 

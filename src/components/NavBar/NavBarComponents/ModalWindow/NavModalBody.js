@@ -1,3 +1,4 @@
+import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import {Tabs} from '../../../Tabs/Tabs'
@@ -6,13 +7,14 @@ import { togglePopup } from '@/redux/slices/openPopup'
 import styles from './NavModalBody.module.scss'
 
 
-function ModalBody() {
+function  ModalBody ({modalBodyRef, ...props}) {
 
 	const dispatch = useDispatch()
 
 	return (
-		<>
 			<div
+				{...props}
+				ref={modalBodyRef}
 				className={styles.popup__body}
 			>
 				<div
@@ -28,9 +30,8 @@ function ModalBody() {
 					<Tabs/>
 				</div>
 			</div>
-		</>
 	)
 
 
 }
-export default ModalBody
+export default React.forwardRef((ref, ...props) => ModalBody(ref, ...props))

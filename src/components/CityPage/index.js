@@ -7,6 +7,7 @@ import useWindowWidth from '../../custumHooks/useWindowWidth'
 import ParralaxKanada from '../../components/CityPageComponents/Parralax/Parralax'
 import SlidingSlider from '../../components/CityPageComponents/Sliding slider/SlidingSlider'
 import Card from '../../components/CityPageComponents/Card/Card'
+import Link from 'next/link'
 import Input from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
 import styles from './styles.module.scss'
@@ -15,6 +16,7 @@ import { setColor, setMessage, removeColor, removeMessage } from '@/redux/slices
 import { Modal } from '@mui/material'
 import  AddBankCardForm  from '@/pages/profile/components/AddBankCardForm/AddBankCardForm'
 import Cookies from 'universal-cookie'
+import { togglePopup } from '@/redux/slices/openPopup'
 
 export default function CityPage({
    cityName,
@@ -303,8 +305,8 @@ export default function CityPage({
                            }
                         </div>
                      </div>
-                     <div className={styles.row}  >
-                           <div className={styles.col} id={`${cityNameEng}_order_ticket`} >
+                     <div className={styles.row} id={`${cityNameEng}_order_ticket`}  >
+                           <div className={styles.col}  >
                               <h3>Заказать билет</h3>
                               <div className={styles.attention} >
                                  <p>Поездка занимает три дня</p>
@@ -320,11 +322,15 @@ export default function CityPage({
                                     ?
                                        creditCard
                                        ? null
-                                       : <p style={{color:'red', fontWeight:'600'}} >Чтобы купить билет, привяжите в личном кабинете банковскую карту</p>
+                                       : <p>Чтобы купить билет, привяжите в <Link href={'/profile'} className={styles.openPopupLink} > личном кабинете </Link>  банковскую карту</p>
                                     : 
                                     <>
-                                     <p style={{color:'red', fontWeight:'600'}} >Для приобретения билета нужно зарегистрироваться или войти в систему</p>  
-                                     <p  style={{color:'red', fontWeight:'600'}}>Чтобы купить билет, привяжите в личном кабинете банковскую карту</p>
+                                     <p>Для приобретения билета нужно 
+                                     <span className={styles.openPopupLink} onClick={() => dispatch(togglePopup())} >
+                                       {` зарегистрироваться или войти в систему`} 
+                                       </span> 
+                                     </p>  
+                              
                                     </>
                                    
                                  }
@@ -388,7 +394,10 @@ export default function CityPage({
                                  <div className={styles.price} >
                                     Цена: {price}
                                  </div>
-                                 <Button
+                                 {
+                                    isLogin
+                                    ?
+                                    <Button
                                     className={
                                        // isLogin && creditCard
                                        // ?   styles.button
@@ -402,7 +411,16 @@ export default function CityPage({
                                     disabled = {!isLogin}
                                     title={loadind ? <Loader/> : 'Заказать билет'}
                                     type='submit'
-                                 />
+                                    />
+                                    :
+                                    <Link 
+                                    href={`#${cityNameEng}_order_ticket`} 
+                                    className={styles.button}
+                                    >
+                                       Заказать билет
+                                    </Link>
+                                 }
+                                
                               </form>
                            </div>
                      </div>
