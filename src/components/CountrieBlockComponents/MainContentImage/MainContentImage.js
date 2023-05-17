@@ -7,8 +7,9 @@ import Link from 'next/link'
 import {Caveat} from 'next/font/google'
 
 import styles from './MainContentImage.module.scss'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loader from '@/components/Loader/Loader'
+import { togglePopup } from '@/redux/slices/openPopup'
 
 const caveat = Caveat({
 	subsets:['cyrillic'],
@@ -29,6 +30,8 @@ export default function MainContentImg({
 	const isLogin = useSelector(state => state.isAuth.isAuth)
 
 	const [price, setPrice] = useState()
+
+	const dispatch = useDispatch()
 
 
 	const controls = useAnimation()
@@ -88,6 +91,7 @@ export default function MainContentImg({
 						</Link>
 						:
 						<Link
+							onClick={() => dispatch(togglePopup())}
 							href={'/#main__content'}
 							className={`${styles.link_order + ' ' + styles.disabled}`
 						}

@@ -414,6 +414,7 @@ export default function CityPage({
                                     />
                                     :
                                     <Link 
+                                    onClick={() => dispatch(togglePopup())}
                                     href={`#${cityNameEng}_order_ticket`} 
                                     className={styles.button}
                                     >
