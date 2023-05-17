@@ -242,12 +242,13 @@ const RegistrationTab = () => {
                   } 
                   htmlFor="ckbox"
                   >Ознакомлен и принимаю <br/>
-                     <Link 
+                    
+                  </label>
+                  <Link 
                      className={styles.signin_label__link} 
                      href="/registration-conditions"
                      onClick={() => dispatch(togglePopup())}
                      > условия регистрации</Link>
-                  </label>
 					</div>
                {
                   errors.email 
