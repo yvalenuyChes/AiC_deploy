@@ -2,9 +2,14 @@ import  { useState } from 'react'
 import Input from "@/components/Input/Input"
 import Loader from "@/components/Loader/Loader"
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { togglePopup } from '@/redux/slices/openPopup'
+import Link from 'next/link'
 import styles from './styles.module.scss'
 
 export const RegstrationTabMobile = () => {
+
+   const dispatch = useDispatch()
 
    const [accept, setAccept] = useState(false)
 
@@ -243,8 +248,12 @@ export const RegstrationTabMobile = () => {
                   } 
                   htmlFor="ckbox"
                   >Ознакомлен и принимаю <br/>
-                     <a className={styles.signin_label__link} href="##"> условия регистрации</a>
                   </label>
+                  <Link 
+                     className={styles.signin_label__link} 
+                     href="/registration-conditions"
+                     onClick={() => dispatch(togglePopup())}
+                     > условия регистрации</Link>
 					</div>
                {
                   errors.email 
