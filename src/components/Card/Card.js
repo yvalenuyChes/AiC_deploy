@@ -17,24 +17,24 @@ export default function Card({
       }
       >
          <div
-            className={styles.card__number}
+            className={styles.number}
          >
             {cardNumber}
          </div>
          <div
-            className={styles.card__expire}
+            className={styles.expire}
          >
             {expire}
          </div>
         <div
-         className={styles.card__holder_name}
+         className={styles.holder_name}
         > {holderName} 
         </div> 
         <div
         className={
          brand
-         ? styles.card__brand + ' ' + brand
-         : styles.card__brand
+         ? styles.brand + ' ' + brand
+         : styles.brand
         }
         />
       </div>

@@ -140,6 +140,10 @@
 .signin_label__link{
 	transition: .5s ease;
 	color: cornflowerblue !important;
+
+	&:hover{
+		color: #000 !important;
+	}
 }
 
 .tab_button{

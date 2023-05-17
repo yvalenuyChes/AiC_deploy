@@ -120,9 +120,9 @@ export default function SmallBankCard ({
             :
             <>
             <div className={styles.front} >
-               <div className={styles.smallBankCard_number} > **** {number.substring(number.length - 4)} </div>
+               <div className={styles.number} > **** {number.substring(number.length - 4)} </div>
                   <div
-                  className={styles.smallBankCard_brand + ' ' + styles[brand]}
+                  className={styles.brand + ' ' + styles[brand]}
                   />
             </div>
              <div className={styles.back} >

@@ -1,0 +1,60 @@
+@import '../../styles/mixins';
+
+.container{
+  
+   @include container;
+}
+
+.title{
+   padding: 100px 0 60px 0;
+   width: 100%;
+   text-align: center;
+   font-size: 20px;
+   font-weight: 600;
+}
+
+.link{
+   color: #298cad;
+   transition: all .5s ease;
+
+   &:hover{
+      color: black;
+   }
+}
+
+
+.list{
+   
+   width: 60%;
+   margin: 0 auto;
+
+
+   &_item{
+      padding: 15px 0;
+      line-height: 25px;
+   }
+}
+
+
+.button{
+   height: 48px;
+	position: relative;
+   transition: ease .5s all;
+   margin: 30px auto 10px auto;
+   border: none;
+   width: 200px;
+   background: #298cad;
+   color:white;
+   font-size: 18px;
+   text-transform: uppercase;
+   display: block;
+   text-align: center;
+   line-height: 48px;
+   border-radius: 10px;
+
+
+   &:hover{
+      transition: ease .5s all;
+      background: rgb(35, 78, 158);
+   }
+}

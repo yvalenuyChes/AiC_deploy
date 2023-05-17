@@ -3,6 +3,9 @@ import Input from "@/components/Input/Input"
 import Loader from "@/components/Loader/Loader"
 import axios from 'axios'
 import styles from './styles.module.scss'
+import Link from 'next/link'
+import { useDispatch } from 'react-redux'
+import { togglePopup } from '@/redux/slices/openPopup'
 
 const RegistrationTab = () => {
    const [accept, setAccept] = useState(false)
@@ -21,6 +24,8 @@ const RegistrationTab = () => {
       name:true,
       repeatPassword:true
    })
+
+   const dispatch = useDispatch()
 
    const [loading, setLoading] = useState(false)
 
@@ -237,7 +242,11 @@ const RegistrationTab = () => {
                   } 
                   htmlFor="ckbox"
                   >Ознакомлен и принимаю <br/>
-                     <a className={styles.signin_label__link} href="##"> условия регистрации</a>
+                     <Link 
+                     className={styles.signin_label__link} 
+                     href="/registration-conditions"
+                     onClick={() => dispatch(togglePopup())}
+                     > условия регистрации</Link>
                   </label>
 					</div>
                {
