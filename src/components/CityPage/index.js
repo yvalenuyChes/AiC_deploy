@@ -140,6 +140,7 @@ export default function CityPage({
          }
       }
 
+
       creditCard
       ?
          axios(configuration)
@@ -162,10 +163,13 @@ export default function CityPage({
          })
          .finally(() => setLoading(false))
       :
+   
          setOpenPopup(true)
          setLoading(false)
-
       
+        
+
+
    }
 
  
@@ -413,13 +417,13 @@ export default function CityPage({
                                     type='submit'
                                     />
                                     :
-                                    <Link 
+                                    <button 
                                     onClick={() => dispatch(togglePopup())}
-                                    href={`#${cityNameEng}_order_ticket`} 
+                                    type='button'
                                     className={styles.button}
                                     >
                                        Заказать билет
-                                    </Link>
+                                    </button>
                                  }
                                 
                               </form>

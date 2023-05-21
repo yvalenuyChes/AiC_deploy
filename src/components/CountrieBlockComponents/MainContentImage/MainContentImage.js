@@ -90,14 +90,14 @@ export default function MainContentImg({
 							Заказать билет
 						</Link>
 						:
-						<Link
+						<button
 							onClick={() => dispatch(togglePopup())}
 							href={'/#main__content'}
 							className={`${styles.link_order + ' ' + styles.disabled}`
 						}
 						>
 						Заказать билет
-						</Link>
+						</button>
 					}
 					
 					<Link
