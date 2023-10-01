@@ -9,11 +9,11 @@
 
 
 	.errorsField__item{
+		height: 40px;
       width: 100%;
 		display: flex;
       align-content: center;
       justify-content: center;
-		height: 40px;
 		transition: all .3s ease;
 		padding: 10px 0 10px 0;
 		color: rgb(124, 210, 124);
@@ -23,10 +23,10 @@
 		&_tip{
 			position: relative;
 			right: 0;
-			top: 10px;
+			top: 5px;
 			display: block;
-			width: 30px;
-			height: 30px;
+			width: 20px;
+			height: 20px;
 			&::before{
 				content: '';
 				position: absolute;
@@ -36,11 +36,11 @@
 				border-right:2px solid lime;
 				border-bottom:2px solid lime;
 				transform: rotate(40deg);
-				width: 12px;
-				height: 22px;
+				width: 10px;
+				height: 15px;
 				transform-origin: 100% 100%;
-				top: -15px;
-				left: 15px;
+				top: -10px;
+				left: 10px;
 			}
 		}
 	

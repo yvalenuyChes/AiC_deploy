@@ -19,6 +19,7 @@ export default function Profile(){
    const [addBankCard, setAddBankCard] = useState(false)
    const isLogin = useSelector(state => state.isAuth.isAuth)
    const [reloadCards, setReloadCards] = useState(0)
+   const [validTickets, setValidTickets] = useState([])
 
    useEffect(()=>{
 
@@ -34,9 +35,18 @@ export default function Profile(){
       }
          axios(configuration)
          .then(result => setUser(result.data) )
+         .then(() => {
+            user.tickets.map(ticket => {
+              if (ticket.dateCome > (new Date().toISOString())){
+               setValidTickets(prev => [...prev, ticket])
+              }
+            })
+         })
          .catch(e => console.log(e))
    }, [addBankCard, reloadCards])
 
+
+   console.log(validTickets);
 
    // const sendVerifiedLetter = () =>{
 
@@ -86,7 +96,7 @@ export default function Profile(){
                   {
                   user.tickets
                   ?  
-                  user.tickets.length !== 0
+                  validTickets.length !== 0
                   ?
                   <div className={styles.profile__tickets_list} >
                      {
@@ -110,7 +120,7 @@ export default function Profile(){
                         })
                      }
                   </div>
-                  : <div className={styles.profile__tickets__no_tickets} >Вы еще не заказали билеты</div> 
+                  : <div className={styles.profile__tickets__no_tickets} >Нет действующих билетов</div> 
 
                  
                   : 
@@ -122,23 +132,30 @@ export default function Profile(){
              </div>
              <div className={styles.user_pay_card} >
                <h3 className={styles.user_pay_card__title} >Ваши банковские карты</h3>
-               <div className={styles.user_pay_card_message} >
+               <ul className={styles.user_pay_card_message} >
                   Данное приложение поддерживает 7 банковских карточек:
-                  <br/>
-                  Сбер,
-                  <br/>
-                  Росбанк,
-                  <br/> 
-                  Тинькоф,
-                  <br/> 
-                  Альфа банк,
-                  <br/> 
-                  банк Открытие, 
-                  <br/>
-                  ВТБ, 
-                  <br/>
-                  Газпром банк
-               </div>
+                  <li>
+                     Сбер,
+                  </li>
+                  <li>
+                     Росбанк,
+                  </li>
+                  <li>
+                     Тинькоф,
+                  </li>
+                  <li>
+                     Альфа банк,
+                  </li>
+                  <li>
+                     банк Открытие, 
+                  </li>
+                  <li>
+                     ВТБ, 
+                  </li>
+                  <li>
+                     Газпром банк
+                  </li>
+               </ul>
                <div className={styles.user_pay_card_container} >
          
 

@@ -6,7 +6,7 @@
 }
 
 .errorsField{
-	padding: 40px;
+	padding: 40px 20px;
 	background-color: #fff;
 	height: 100%;
 	width: 300px;
@@ -29,10 +29,14 @@
 
 
 	&__item{
+		display: flex;
+		justify-content: space-between;	
+		align-items: center;
 		text-align: left;
 		height: 40px;
+		width: 80%;
 		transition: all .3s ease;
-		padding: 10px 0 10px 0;
+		padding: 30px 0 10px 20px;
 		color: rgb(124, 210, 124);
 		font-size: 16px;
 		font-weight: 600;
@@ -40,7 +44,7 @@
 		&_tip{
 			position: relative;
 			right: 0;
-			top: 10px;
+			top: 12px;
 			display: block;
 			width: 30px;
 			height: 30px;
