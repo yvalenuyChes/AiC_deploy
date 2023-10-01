@@ -9,7 +9,7 @@ export default function RegistrationConditions(){
  <div className={styles.container}>
          <h2 className={styles.title} >
             Условия регистрации
-            {`(и по сути ReadMe)`}
+            {` (и по сути ReadMe)`}
          </h2>
         <ul className={styles.list} >
             <li className={styles.list_item} >

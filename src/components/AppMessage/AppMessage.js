@@ -18,6 +18,7 @@ export const AppMessage = () => {
    const message = useSelector(state => state.appMessage.appMessage)
    const borderColor =  useSelector(state => state.appMessage.color)
 
+
    const dispatch = useDispatch()
 
    const removeHandler = () => {
@@ -53,7 +54,7 @@ export const AppMessage = () => {
            
            
          </div>
-         </motion.div>
+      </motion.div>
         : null
      
    )
