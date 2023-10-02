@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react"
-import styles from './styles.module.scss'
+import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import Card from "../../../../components/Card/Card"
-import Input from "@/components/Input/Input"
+import {Input} from "@/components/Input/Input"
 import { X_RAPID_API_HOST, X_RAPID_API_KEY } from "@/keys"
 import { useDispatch } from "react-redux"
 import { setColor, setMessage, removeColor, removeMessage } from "@/redux/slices/AppMessage"
 import Loader from "@/components/Loader/Loader"
 import Cookies from 'universal-cookie'
+import { Button } from "@/components/Button/Button"
 
-export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCard}) {
+import styles from './styles.module.scss'
+import { closeCityPagePopup } from "@/redux/slices/closeCityPopupWindow"
+
+export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCard, autoFocus}) {
 
    const [cardData, setCardData] = useState(null)
    const [email, setEmail] = useState(null)
@@ -19,7 +22,9 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
    const [expireDate] = useState('21/30')
    const [loading, setLoading] = useState(false)
    const [cardError, setCardError] = useState(true)
-   
+
+   const inputCard = useRef(null)
+ 
 
    const dispatch = useDispatch()
 
@@ -45,7 +50,7 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
    }, [])
    
    useEffect(() => {
-      if(cardNumber.length === 15){
+      if(cardNumber.length === 16){
          const options = {
             method: 'POST',
             url: 'https://bin-ip-checker.p.rapidapi.com/',
@@ -97,8 +102,17 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
    }, [cardNumber])
 
 
-   const cardNumberHandler = event => {
-         setCardNumber((event.target.value).replace(/\D/g,'').substr(0,16))
+   const cardNumberHandler = () => {
+         const cardValue = inputCard.current.value
+         .replace(/\D/g, '')
+         .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/);
+      inputCard.current.value = !cardValue[2]
+         ? cardValue[1]
+         : `${cardValue[1]} ${cardValue[2]}${`${
+            cardValue[3] ? ` ${cardValue[3]}` : ''
+         }`}${`${cardValue[4] ? ` ${cardValue[4]}` : ''}`}`;
+      const numbers = inputCard.current.value.replace(/(\D)/g, '');
+      setCardNumber(numbers);
    }
 
     const holderNameHandler = event => {
@@ -133,12 +147,14 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
       .then(result => {
          dispatch(setMessage(`${result.data.message}`))
          dispatch(setColor(`${result.data.color}`))
+         dispatch(closeCityPagePopup())
          if(result.data.message === 'Вы успешно привязали карту'){
             setAddBankCard(false)
             if(window !== undefined){
                localStorage.setItem('AiW_Credit_Card', `${cardNumber.trim()}` )
                setCreditCard(localStorage.getItem('AiW_Credit_Card'))
             }
+            dispatch(closeCityPagePopup())
            
          }
       })
@@ -174,21 +190,70 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
             ?  styles[cardData.BIN.brand.split(' ').join('')]
             : null
           }
-         cardNumber={cardNumber}
+         cardNumber={inputCard.current ? inputCard.current.value : ''}
          holderName={holderName}
          expire={expireDate}
        />
+         <div className={styles.card_templates} >
+            <div className={styles.card_templates__title}>
+               Шаблоны для карт
+            </div>
+            <div className={styles.card_templates__buttons_container}>
+               <Button 
+                  title={'Сбер'} 
+                  type={'button'} 
+                  onClick={() => { setCardNumber('2202206111111111'), inputCard.current.value = `2202 2061 1111 1111` }} 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'Росбанк'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('5578421111111111'), inputCard.current.value =(`5578 4211 1111 1111`)}} 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'Тинькоф'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('5189011711111111'),inputCard.current.value = `5189 0117 1111 1111` }} 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'Альфа банк'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('4154291111111111'), inputCard.current.value =  `4154 2911 1111 1111`}} 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'Открытие'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('5323011111111111') ,inputCard.current.value = `5323 0111 1111 1111`} } 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'ВТБ'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('5160771111111111'),  inputCard.current.value = `5160 7711 1111 1111`  }} 
+                  className={styles.card_templates__button} 
+               />
+               <Button 
+                  title={'Газпром'} 
+                  type={'button'} 
+                  onClick={() => {setCardNumber('4874151111111111'),  inputCard.current.value = `4874 1511 1111 1111` }} 
+                  className={styles.card_templates__button} 
+               />
+            </div>
+           
+         </div>
          <form
          onSubmit={handleSubmit}
          >
          <Input
-            autoFocus={true}
-            type="number"
+            ref={inputCard}
+            autoFocus={autoFocus}
+            type="text"
             label="Номер карты"
-            value={cardNumber}
+            value={inputCard.current ? inputCard.current.value : ''}
             onChange={cardNumberHandler}
-            maxLength={16}
-            onPaste={true}
          />
          <Input
             type='text'
@@ -209,7 +274,7 @@ export default function AddBankCardForm ({userEmail, setAddBankCard, setCreditCa
          type="submit" 
          >{loading ? <Loader/> : 'Привязать'}</button>
          </form>
-         
+       
       </div>
    )
 }

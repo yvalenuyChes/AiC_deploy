@@ -5,13 +5,11 @@ import MainPage from '@/layout/MainPage'
 import axios from 'axios'
 import  Ticket  from './components/Ticket/Ticket'
 import  AddBankCardForm from './components/AddBankCardForm/AddBankCardForm'
-import  SmallBankCard  from './components/SmallBankCard/SmallBankCard'
+import  SmallBankCard  from '../../components/SmallBankCard/SmallBankCard'
 import Loader from '@/components/Loader/Loader'
 import styles from './styles.module.scss'
 import Link from 'next/link'
 import Cookies from 'universal-cookie'
-
-//!!!!!!!!!!!!!!!!!!!!! Поставь фон для карточек, чтобы при медленной загрузке было понятно, что за карточка
 
 export default function Profile(){
 
@@ -45,9 +43,6 @@ export default function Profile(){
          .catch(e => console.log(e))
    }, [addBankCard, reloadCards])
 
-
-   console.log(validTickets);
-
    // const sendVerifiedLetter = () =>{
 
    //    const configuration = {
@@ -80,7 +75,7 @@ export default function Profile(){
             <div className={styles.profile_block}>
              <h3 className={styles.profile_title} >Профиль</h3>
              <div className={styles.profile_name}>
-               <h3 className={styles.profile_name_title} >  Здравствуйте, {user === null ?  <Loader/>  : user.name }</h3>
+               <h3 className={styles.profile_name_title} >  Здравствуйте, {user.name === undefined ?  <Loader/>  : user.name }</h3>
              </div>
             {/* <div className={styles.profile__email} >
                <p>Ваша почта: {user === null ? <Loader/> : user.email}  </p>
@@ -156,6 +151,7 @@ export default function Profile(){
                      Газпром банк
                   </li>
                </ul>
+               <h3 className={styles.user_pay_card__subtitle} >Добавленные банковские карты</h3>
                <div className={styles.user_pay_card_container} >
          
 
@@ -165,24 +161,28 @@ export default function Profile(){
                      ? 
                      user.creditCards.length !== 0
                         ? 
-                        <div className={styles.user_pay_card_saved}>
-                           {
-                              user.creditCards.map((bankCard, key) => {
-                                 return(
-                                    <SmallBankCard
-                                       cardNumber={bankCard.cardNumber}
-                                       bank={bankCard.bankName}
-                                       brand={bankCard.brand}
-                                       key={key}
-                                       userEmail={user.email}
-                                       setReloadCards={setReloadCards}
-                                       reload={reloadCards}
-                                    />
-                                 )
-                              })
-                           }
+                           <>
+                          
+                           <div className={styles.user_pay_card_saved}>
+                              {
+                                 user.creditCards.map((bankCard, key) => {
+                                    return(
+                                       <SmallBankCard
+                                          cardNumber={bankCard.cardNumber}
+                                          bank={bankCard.bankName}
+                                          brand={bankCard.brand}
+                                          key={key}
+                                          userEmail={user.email}
+                                          setReloadCards={setReloadCards}
+                                          reload={reloadCards}
+                                       />
+                                    )
+                                 })
+                              }
                          
-                        </div>
+                           </div>
+                        </>
+                      
                        
                         : <div className={styles.user_pay_card__no_cards} >
                            <h3>Нет привязанных банковских карт</h3>
@@ -205,6 +205,7 @@ export default function Profile(){
                         <AddBankCardForm
                            setAddBankCard={setAddBankCard}
                            userEmail={user.email}
+                           autoFocus={true}
                         />
                         : null
                      }

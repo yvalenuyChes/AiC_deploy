@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-import Input from '../../Input/Input'
+import {Input} from '../../Input/Input'
 import { useState } from 'react'
 
 export default function Slide(

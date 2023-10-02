@@ -6,6 +6,7 @@ import { setColor, setMessage, removeMessage, removeColor } from '@/redux/slices
 import axios from 'axios'
 import styles from './styles.module.scss'
 import Loader from '@/components/Loader/Loader'
+import { closeCityPagePopup } from '@/redux/slices/closeCityPopupWindow'
 
 
 export default function SmallBankCard ({
@@ -50,7 +51,10 @@ export default function SmallBankCard ({
       .then(result=> {
          dispatch(setMessage(`${result.data.message}`))
          dispatch(setColor(`${result.data.color}`))
-         setReloadCards(Date.now())
+         if(setReloadCards){
+            setReloadCards(Date.now())
+         }
+         
          if(window !== undefined){
             localStorage.removeItem('AiW_Credit_Card')
          }
@@ -65,17 +69,29 @@ export default function SmallBankCard ({
    }
 
    useEffect(()=> {
-      setReloadCards(Date.now())
+      if(setReloadCards){
+         setReloadCards(Date.now())
+      }
+     
    }, [AiC_creditCard])
 
    const selectDefoultCard = () => {
       if(window !== undefined){
          localStorage.setItem('AiW_Credit_Card', number)
-       
+         dispatch(closeCityPagePopup())
         setAiC_creditCard(localStorage.getItem('AiW_Credit_Card'))
+        dispatch(setMessage('Карта выбрана'))
+        dispatch(setColor('rgb(47, 160, 47)'))
+        setTimeout(()=> {
+         dispatch(removeMessage())
+         dispatch(removeColor())
+      }, 3000)
       }
 
-      setReloadCards(prev => prev + Date.now())
+      if(setReloadCards){
+         setReloadCards(prev => prev + Date.now())
+      }
+      
    }
 
    const controls = useAnimation()

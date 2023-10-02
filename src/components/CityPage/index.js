@@ -8,7 +8,7 @@ import ParralaxKanada from '../../components/CityPageComponents/Parralax/Parrala
 import SlidingSlider from '../../components/CityPageComponents/Sliding slider/SlidingSlider'
 import Card from '../../components/CityPageComponents/Card/Card'
 import Link from 'next/link'
-import Input from '@/components/Input/Input'
+import {Input} from '@/components/Input/Input'
 import { Button } from '@/components/Button/Button'
 import styles from './styles.module.scss'
 import Loader from '@/components/Loader/Loader'
@@ -17,6 +17,8 @@ import { Modal } from '@mui/material'
 import  AddBankCardForm  from '@/pages/profile/components/AddBankCardForm/AddBankCardForm'
 import Cookies from 'universal-cookie'
 import { togglePopup } from '@/redux/slices/openPopup'
+import SmallBankCard from '@/components/SmallBankCard/SmallBankCard'
+import { openCityPagePopup, closeCityPagePopup } from '@/redux/slices/closeCityPopupWindow'
 
 export default function CityPage({
    cityName,
@@ -39,6 +41,7 @@ export default function CityPage({
    const isLogin = useSelector(state => state.isAuth.isAuth)
    const [loadind, setLoading] = useState(false)
    const [userEmail,setUserEmail] = useState('')
+   const [userBankCards, setUserBankCards] = useState([])
    const [price, setPrice] = useState(ticketPrice)
    const [personNum, setPersonNum] = useState(1)
    const [date, setDate] = useState(currentDate.toJSON().slice(0, 10))
@@ -47,8 +50,7 @@ export default function CityPage({
    const [isValidMinusButton, setValidMinusButton] = useState(false)
    const maxDate = new Date(new Date().setDate( new Date().getDate() + 30)) 
    const [creditCard, setCreditCard] = useState(null)
-   const [openPopup, setOpenPopup] = useState(false)
-
+   const openPopup = useSelector(state => state.cityPagePopup.openCityPagePopup)
 
    const dispatch = useDispatch()
 
@@ -67,6 +69,7 @@ export default function CityPage({
       }
       axios(configuration)
       .then(result => {
+            setUserBankCards(result.data.creditCards)
             setUserEmail(result.data.email)
             if(window !== undefined){
                setCreditCard(localStorage.getItem('AiW_Credit_Card'))
@@ -74,12 +77,14 @@ export default function CityPage({
           
          })
          .catch(e => console.log(e))
-   }, [])
+   }, [openPopup])
 
    
  useEffect(()=> {
    personNumValidator()
    }, [personNum])
+
+ 
 
 
    const handlePrice = () => {
@@ -164,19 +169,13 @@ export default function CityPage({
          .finally(() => setLoading(false))
       :
    
-         setOpenPopup(true)
+         dispatch(openCityPagePopup())
          setLoading(false)
       
         
 
 
    }
-
- 
-
-
-   
-   //!!!!!!!!!! На главной странице слетели размеры картинок, картинки стран
 
    return(
       <MainPage>
@@ -212,14 +211,40 @@ export default function CityPage({
                               <span
                                  role="button"
                                  className={styles.popup__close}
-                                 onClick={() => setOpenPopup(!openPopup)}
+                                 onClick={() => dispatch(closeCityPagePopup())}
                               />
                               <h4
                               className={styles.modal__body_title}
                               >Привязка банковской карты</h4>
+                              {
+                                 userBankCards.length !== 0
+                                 ?
+                                 <div className={styles.user_bank_cards}  >
+                                    <h3 className={styles.user_bank_cards__title} >Добавленные банковские карты</h3>
+                                    <div className={styles.user_bank_cards__container}>
+                                       {
+                                          userBankCards.map((card, key) => {
+                                             return(
+                                                <SmallBankCard
+                                                cardNumber={card.cardNumber}
+                                                bank={card.bankName}
+                                                brand={card.brand}
+                                                key={key}
+                                             /> 
+                                             )
+                                          
+                                          })
+                                       }
+                                    </div>
+                                 </div>
+                                 :
+                                 null
+                              }
+                              
                               <AddBankCardForm
-                                 setAddBankCard={setOpenPopup}
+                                 setAddBankCard={dispatch(closeCityPagePopup)}
                                  setCreditCard = {setCreditCard}
+                                 autoFocus={false}
                               />
                            </div>
                            
@@ -403,15 +428,10 @@ export default function CityPage({
                                     ?
                                     <Button
                                     className={
-                                       // isLogin && creditCard
-                                       // ?   styles.button
-                                       // :  styles.disabled
-
                                        isLogin
                                        ?   styles.button
                                        :  styles.disabled
                                     }
-                                    // disabled = {!isLogin || !creditCard}
                                     disabled = {!isLogin}
                                     title={loadind ? <Loader/> : 'Заказать билет'}
                                     type='submit'

@@ -11,6 +11,7 @@ import Head from "next/head"
 export default function UsedTickets(){
 
    const [userData, setUserData] = useState(null)
+   const [validTickets, setValidTickets] = useState([])
 
    useEffect(()=>{
       const cookies = new Cookies()
@@ -27,8 +28,15 @@ export default function UsedTickets(){
       .catch(e => console.log(e))
 }, [])
 
-   
-
+   useEffect(() => {
+      if (userData){
+         userData.tickets.map(ticket => {
+            if (ticket.dateCome < (new Date().toISOString())){
+               setValidTickets(prev => [...prev, ticket])
+              }
+         })
+      }
+   }, [userData])
 
    return(
       <MainPage>
@@ -40,7 +48,7 @@ export default function UsedTickets(){
          {
             userData
             ?
-               userData.tickets  !==  0
+               validTickets.length  !==  0
                ?  
                <div className={styles.used_tickets_container}  >
                   {userData.tickets.map((ticket, key) => {

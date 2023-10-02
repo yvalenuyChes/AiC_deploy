@@ -16,11 +16,9 @@ export default function RegistrationConditions(){
                <p>
                   Данное приложение является пет проектом, с помощью которого я учился и закреплял свои навыки.
                   <br/>
-                  Если найдете баги/будут пожелания, можете мне написать на:
+                  Если найдете баги/будут пожелания, можете мне написать в телеграм: @yvalenuyChes
                   <br/>
-                  <Link className={styles.link} href={'https://vk.com/vladislav132'} > 
-                  {` https://vk.com/vladislav132`}
-                  </Link>
+      
                </p>
             </li>
             <li className={styles.list_item} >
@@ -37,17 +35,6 @@ export default function RegistrationConditions(){
             <li className={styles.list_item} >
                <p>
                   При регистрации можно указать любую почту, но она должна быть валидной по написанию, на данном этапе емаил рассылки нет
-               </p>
-            </li>
-       
-            <li className={styles.list_item} >
-               <p>
-                  Номера карт можете писать любые, главное чтобы они были русские и bin цифры {`( первые 4,6 или 8 )`} были действительными. 
-                  <br/>
-                  Если не хотите использовать свою карту или искать в интернете binы карт, дефолтная карта:
-                  <br/>
-                  <br/>
-                  2202206111111111
                </p>
             </li>
         

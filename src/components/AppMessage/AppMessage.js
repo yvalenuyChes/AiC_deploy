@@ -12,7 +12,7 @@ export const AppMessage = () => {
 
 	const animation = {
 		visible: { y: 0, transition:{duration:1}, display:'block'},
-		hidden: {display:'none', y: -50, transition:{duration:1}}
+		hidden: {display:'none', y: 50, transition:{duration:1}}
 	 }
 
    const message = useSelector(state => state.appMessage.appMessage)

@@ -4,6 +4,7 @@ import {isAuth} from './slices/isAuth';
 import { navOpen } from './slices/openNav';
 import {openPopup} from './slices/openPopup';
 import { appMessage } from './slices/AppMessage';
+import { cityPagePopup } from './slices/closeCityPopupWindow';
 
  const store = () =>
   configureStore({
@@ -11,7 +12,8 @@ import { appMessage } from './slices/AppMessage';
        [navOpen.name]: navOpen.reducer,
        [openPopup.name]: openPopup.reducer,
        [isAuth.name]: isAuth.reducer,
-       [appMessage.name] : appMessage.reducer
+       [appMessage.name] : appMessage.reducer,
+       [cityPagePopup.name]: cityPagePopup.reducer
     },
     devTools: true,
   })

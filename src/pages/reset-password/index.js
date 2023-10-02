@@ -1,4 +1,4 @@
-import Input from "@/components/Input/Input";
+import {Input} from "@/components/Input/Input";
 import MainPage from "@/layout/MainPage";
 import { setColor, setMessage } from "@/redux/slices/AppMessage";
 import axios from "axios";

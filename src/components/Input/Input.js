@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { forwardRef, useState } from 'react'
 import styles from './Input.module.scss'
 
-export default function Input(
+export const Input = forwardRef(function Input(
 	{
 		label,
 		type,
@@ -18,7 +18,8 @@ export default function Input(
 		maxLength,
 		onPaste,
 		autoFocus
-	}
+	},
+	ref
 ) {
 	const [isFocus, changeFocus] = useState(false)
 
@@ -36,9 +37,11 @@ export default function Input(
 					? `${styles.input__box_order_ticket + ' ' + styles.focus_for_order}`
 					:`${styles.input__box_order_ticket}` 
 				}
+				
 			>
 				<label className={styles.label_order_ticket} htmlFor={name}> {label} </label>
 				<input
+					ref={ref}
 					inputMode={inputMode}
 					id={name}
 					name={name}
@@ -64,4 +67,4 @@ export default function Input(
 			</div>
 		</>
 	)
-}
+})

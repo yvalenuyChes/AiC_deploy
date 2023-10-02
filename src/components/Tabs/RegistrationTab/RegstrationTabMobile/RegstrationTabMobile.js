@@ -1,5 +1,5 @@
 import  { useState } from 'react'
-import Input from "@/components/Input/Input"
+import {Input} from "@/components/Input/Input"
 import Loader from "@/components/Loader/Loader"
 import axios from 'axios'
 import { useDispatch } from 'react-redux'

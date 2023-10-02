@@ -4,7 +4,7 @@ import { setAuthTrue } from '@/redux/slices/isAuth'
 import Loader from '@/components/Loader/Loader'
 import Cookies from 'universal-cookie'
 import axios from "axios"
-import Input from '../../Input/Input'
+import {Input} from '../../Input/Input'
 import { togglePopup } from '@/redux/slices/openPopup'
 import styles from './styles.module.scss'
 import { removeColor, removeMessage, setColor, setMessage } from '@/redux/slices/AppMessage'
