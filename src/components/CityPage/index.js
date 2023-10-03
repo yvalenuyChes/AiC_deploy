@@ -150,7 +150,10 @@ export default function CityPage({
       ?
          axios(configuration)
          .then(result => {
-            dispatch(setMessage(result.data.message))
+            dispatch(setMessage(`
+            ${result.data.message}. 
+            Он отобразиться в личном кабинете
+            `))
             dispatch(setColor(result.data.color))
             setTimeout(()=> {
                dispatch(removeMessage())
